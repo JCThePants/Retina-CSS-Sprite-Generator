@@ -1,0 +1,60 @@
+/** Color Picker Select Box **/
+.color-picker {
+    .value {
+        .color {
+            margin-left: 7px;
+            vertical-align: middle;
+        }
+    }
+    &.select.open {
+        .dropdown {
+            height: 62px;
+            padding-left: 2px;
+            padding-top: 2px;
+            overflow: hidden;
+            & > li {
+                display: inline-block;
+                position: relative;
+                width: 28px;
+                height: 28px;
+                padding: 2px 0 0 2px;
+                &[data-selected] {
+                    border-left: 0;
+                    background: #2379d5;
+                }
+            }
+        }
+    }
+    .color {
+        display: inline-block;
+        margin: 0;
+        width: 24px;
+        height: 24px;
+        border: 1px solid transparent;
+        vertical-align: top;
+        &.white {
+            background: #fff;
+        }
+        &.light-gray {
+            background: #c0c0c0;
+        }
+        &.gray {
+            background: #808080;
+        }
+        &.black {
+            background: #000;
+        }
+        &.blue {
+            background: #0000c0;
+        }
+        &.red {
+            background: #800000;
+        }
+        &.green {
+            background: #008000;
+        }
+        &.yellow {
+            background: #c0c000;
+        }
+    }
+}

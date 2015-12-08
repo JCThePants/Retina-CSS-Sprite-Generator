@@ -1,0 +1,43 @@
+@charset "utf-8";
+@import "../_vars.scss";
+@import "../_mixins.scss";
+
+/** Sprite Details **/
+.sprite-details {
+    display: table;
+    padding-top: 7px;
+    margin-bottom: 15px;
+    color: #b2a7a0;
+    
+    li {
+        display: table-row;
+    }
+    
+    .term, .def {
+        display: table-cell;
+        vertical-align: top;
+        line-height: 18px;
+        text-align: left;
+    }
+    
+    .def {
+        padding-left: 10px;
+    }
+    
+    .unit {
+        font-size: 12px;
+        font-weight: lighter;
+        color: #8b8b8b;
+        display: inline-block;
+        padding-left: 2px;
+    }
+    
+    .by {
+        font-size: 10px;
+        color: #8b8b8b;
+    }
+}
+
+h3 + .sprite-details {
+    padding-top: 0;
+}

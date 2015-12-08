@@ -1,0 +1,310 @@
+<div class="panel stylesheet-panel">
+
+    <h2>Stylesheet</h2>
+    <popup-button class="help-btn" data-container-id="stylesHelp">?</popup-button>
+
+    <!-- Select Type -->
+    <div class="select" title="Type" data-model="g.styles.type">
+        <ul class="dropdown">
+            <li data-value="css">CSS</li>
+            <li data-value="scss">SCSS</li>
+        </ul>
+    </div>
+
+    <!-- Select Indent -->
+    <div class="select" title="Indent" data-model="g.styles.indent">
+        <ul class="dropdown">
+            <li data-value="2">2 spaces</li>
+            <li data-value="4">4 spaces</li>
+            <li data-value="6">6 spaces</li>
+            <li data-value="8">8 spaces</li>
+        </ul>
+    </div>
+
+    <a href="#" title="Advanced Settings" class="icon settings" data-ng-class="{'active':g.styles.showSettings}" data-ng-click="g.styles.showSettings=!g.styles.showSettings"></a>
+
+    <div class="settings-box hidden" data-ng-class="{'hidden':!g.styles.showSettings}">
+        <ul>
+            <li data-show-mode="retina">
+                <span class="settings-input">
+                    <text-box title="Retina Image Name" 
+                              data-model="g.styles.retinaName" 
+                              data-input-id="retinaNameRetina"></text-box>
+                </span>
+                <span class="settings-descr">
+                    The name of the retina image file. Leave blank for default.
+                </span>
+            </li>
+            <li data-show-mode="retina">
+                <span class="settings-input">
+                    <text-box title="Normal Image Name" 
+                              data-model="g.styles.imageName" 
+                              data-input-id="imageNameRetina"></text-box>
+                </span>
+                <span class="settings-descr">
+                    The name of the normal size image file. Leave blank for default.
+                </span>
+            </li>
+            <li data-show-mode="normal">
+                <span class="settings-input">
+                    <text-box title="Image Name" 
+                              data-model="g.styles.imageName" 
+                              data-input-id="imageNameNormal"></text-box>
+                </span>
+                <span class="settings-descr">
+                    The name of the image file. Leave blank for default.
+                </span>
+            </li>
+            <li>
+                <span class="settings-input">
+                    <text-box title="Sprite Class Name" 
+                              data-model="g.styles.spriteName" 
+                              data-input-id="spriteName"></text-box>
+                </span>
+                <span class="settings-descr">
+                    The name of the sprite CSS class. Leave blank for default.
+                </span>
+            </li>
+            <li>
+                <span class="settings-input">
+                    <text-box title="Class Prefix" 
+                              data-model="g.styles.prefix" 
+                              data-input-id="prefix"></text-box>
+                </span>
+                <span class="settings-descr">
+                    A prefix to attach to all icon class names.
+                </span>
+            </li>
+            <li>
+                <span class="settings-input">
+                    <text-box title="Class Suffix" 
+                              data-model="g.styles.suffix" 
+                              data-input-id="suffix"></text-box>
+                </span>
+                <span class="settings-descr">
+                    A suffix to attach to all icon class names.
+                </span>
+            </li>
+        </ul>
+    </div>
+
+
+    <!-- Css Preview-->
+    <div class="stylesheet-container" data-ng-class="{hidden:g.styles.type!=='css'}">
+
+        <div class="stylesheet-header">
+            <a href="#" class="icon copy" title="Copy Stylesheet to Clipboard" data-copy-btn="cssStylesheet" data-on-success="confirmCopy(true)" data-on-fail="confirmCopy(false)"></a>
+
+            <span class="copy-confirm copy-success hidden" data-ng-class="{'hidden':!s.msg.copy || !s.msg.copy.isSuccess, 'priority': !s.msg.copy || s.msg.copy.isSuccess}">
+                CSS stylesheet copied to your clipboard.
+            </span>
+            <span class="copy-confirm copy-error hidden" data-ng-class="{'hidden':!s.msg.copy || s.msg.copy.isSuccess, 'priority': !s.msg.copy || !s.msg.copy.isSuccess}">
+                Unable to copy stylesheet to your clipboard. Try manual copy.
+            </span>
+        </div>
+
+        <div class="stylesheet">
+
+            <space-indent data-spaces="g.styles.indent" data-update="spriteData" id="cssStylesheet">
+                <div>
+                    .<span class="css-selector">{{g.styles.spriteName || 'icon'}}</span> {
+                </div>
+
+                <div class="css-property-group">
+                    <div class="css-property" data-indent><span class="css-property-name">background</span>: <span class="css-property-value">url</span>(<span class="css-property-value">'{{g.styles.imageName || 'icons'}}.png'</span>) <span class="css-property-value">no-repeat top left</span>;
+                    </div>
+                    <div class="css-property" data-indent data-ng-class="{'hidden':!spriteData.cmw }"><span class="css-property-name">width</span>: <span class="css-property-value number">{{spriteData.cmw}}px</span>;
+                    </div>
+                    <div class="css-property" data-indent data-ng-class="{'hidden':!spriteData.cmh}"><span class="css-property-name">height</span>: <span class="css-property-value number">{{spriteData.cmh}}px</span>;
+                    </div>
+                </div>
+                }
+
+                <!-- Property Repeater -->
+                <div data-ng-repeat="item in spriteData" class="css-entry">
+
+                    <div>
+                        .<span class="css-selector">{{g.styles.spriteName || 'icon'}}</span>.<span class="css-selector name">{{g.styles.prefix}}{{item.name}}{{g.styles.suffix}}</span> {
+                    </div>
+
+                    <div class="css-property-group">
+                        <div class="css-property" data-indent><span class="css-property-name">background-position</span>:
+                            <span class="css-property-value number">{{item.x !== 0 ? '-' : ''}}{{item.x}}{{item.x !== 0 ? 'px' : ''}}</span>
+                            <span class="css-property-value number">{{item.y !== 0 ? '-' : ''}}{{item.y}}{{item.y !== 0 ? 'px' : ''}}</span>;
+                        </div>
+                        <div class="css-property" data-indent data-ng-class="{'hidden':!item.w}"><span class="css-property-name">width</span>: <span class="css-property-value number">{{item.w}}px</span>;
+                        </div>
+                        <div class="css-property" data-indent data-ng-class="{'hidden':!item.h}"><span class="css-property-name">height</span>: <span class="css-property-value number">{{item.h}}px</span>;
+                        </div>
+                    </div>
+                    }
+                </div>
+
+                <div data-show-mode="retina" data-indent></div>
+
+                <!-- CSS Media Query-->
+                <div data-show-mode="retina">
+                    <span class="css-selector">@media</span> (<span class="css-property-name">-webkit-min-device-pixel-ratio</span>:
+                    <span class="css-property-value">2</span>), (<span class="css-property-name">min-resolution</span>: <span class="css-property-value">192dpi</span>) {
+
+                    <div data-indent>.<span class="css-selector">{{g.styles.spriteName || 'icon'}}</span> {
+                        <div class="css-property-group">
+                            <div class="css-property" data-indent><span class="css-property-name">background</span>: <span class="css-property-value">url</span>(<span class="css-property-value">'{{g.styles.retinaName || 'icons-retina'}}.png'</span>)
+                                <span class="css-property-value">no-repeat top left</span>;
+                            </div>
+                            <div class="css-property" data-indent><span class="css-property-name">background-size</span>:
+                                <span class="css-property-value number">{{spriteData.w}}px</span>
+                                <span class="css-property-value number">{{spriteData.h}}px</span>;
+                            </div>
+                        </div>
+                    </div>
+                    <div data-indent>}</div>
+                    }
+                </div>
+            </space-indent>
+        </div>
+    </div>
+
+    <!-- SCSS Preview-->
+    <div class="stylesheet-container" data-ng-class="{hidden:g.styles.type!=='scss'}">
+
+        <div class="stylesheet-header">
+            <a href="#" class="icon copy" data-copy-btn="scssStylesheet" data-on-success="confirmCopy(true)" data-on-fail="confirmCopy(false)" title="Copy Stylesheet to Clipboard"></a>
+            <span class="copy-confirm copy-success hidden" data-ng-class="{'hidden':!s.msg.copy || !s.msg.copy.isSuccess, 'priority': !s.msg.copy || s.msg.copy.isSuccess}">SCSS stylesheet copied to your clipboard.</span>
+            <span class="copy-confirm copy-error hidden" data-ng-class="{'hidden':!s.msg.copy || s.msg.copy.isSuccess, 'priority': !s.msg.copy || !s.msg.copy.isSuccess}">Unable to copy stylesheet to your clipboard. Try manual copy.</span>
+        </div>
+
+        <div class="stylesheet">
+
+            <!-- Stylesheet -->
+            <space-indent data-spaces="g.styles.indent" data-update="spriteData" id="scssStylesheet">
+
+                <div>
+                    .<span class="css-selector">{{g.styles.spriteName || 'icon'}}</span> {
+                </div>
+                <div class="css-property-group">
+                    <div class="css-property" data-indent><span class="css-property-name">background</span>: <span class="css-property-value">url</span>(<span class="css-property-value">'{{g.styles.imageName || 'icons'}}.png'</span>)
+                        <span class="css-property-value">no-repeat top left</span>;</div>
+                    <div class="css-property" data-indent data-ng-class="{'hidden':!spriteData.cmw}"><span class="css-property-name">width</span>: <span class="css-property-value number">{{spriteData.cmw}}px</span>;</div>
+                    <div class="css-property" data-indent data-ng-class="{'hidden':!spriteData.cmh}"><span class="css-property-name">height</span>: <span class="css-property-value number">{{spriteData.cmh}}px</span>;</div>
+
+                    <div data-show-mode="retina" data-indent></div>
+
+                    <!-- SCSS Media Query-->
+                    <div data-show-mode="retina">
+                        <div data-indent><span class="css-selector">@media</span> (<span class="css-property-name">-webkit-min-device-pixel-ratio</span>:
+                            <span class="css-property-value number">2</span>), (<span class="css-property-name">min-resolution</span>: <span class="css-property-value number">192dpi</span>) {
+
+
+                            <div class="css-property-group">
+                                <div class="css-property" data-indent><span class="css-property-name">background</span>: <span class="css-property-value">url</span>(<span class="css-property-value">'{{g.styles.retinaName || 'icons-retina'}}.png'</span>)
+                                    <span class="css-property-value">no-repeat top left</span>;
+                                </div>
+                                <div class="css-property" data-indent><span class="css-property-name">background-size</span>:
+                                    <span class="css-property-value number">{{spriteData.w}}px</span>
+                                    <span class="css-property-value number">{{spriteData.h}}px</span>;
+                                </div>
+                            </div>
+                        </div>
+                        <div data-indent>}</div>
+                    </div>
+                </div>
+
+                <!-- Property Repeater -->
+                <div data-indent data-ng-class="{'hidden':!spriteData || !spriteData.length}"></div>
+
+                <div data-ng-repeat="item in spriteData" class="css-entry">
+
+                    <div data-indent>&amp;.<span class="css-selector name">{{g.styles.prefix}}{{item.name}}{{g.styles.suffix}}</span> {</div>
+
+                    <div class="css-property-group" data-indent-container>
+                        <div class="css-property" data-indent><span class="css-property-name">background-position</span>:
+                            <span class="css-property-value number">{{item.x !== 0 ? '-' : ''}}{{item.x}}{{item.x !== 0 ? 'px' : ''}}</span>
+                            <span class="css-property-value number">{{item.y !== 0 ? '-' : ''}}{{item.y}}{{item.y !== 0 ? 'px' : ''}}</span>;
+                        </div>
+                        <div class="css-property" data-indent data-ng-class="{'hidden':!item.w}"><span class="css-property-name">width</span>: <span class="css-property-value number">{{item.w}}px</span>;
+                        </div>
+                        <div class="css-property" data-indent data-ng-class="{'hidden':!item.h}"><span class="css-property-name">height</span>: <span class="css-property-value number">{{item.h}}px</span>;
+                        </div>
+                    </div>
+                    <span data-indent>}</span>
+                </div>
+                }
+            </space-indent>
+        </div>
+    </div>
+
+    <!-- Stylesheet Help -->
+    <popup-container id="stylesHelp" class="help-container">
+
+        <h3>Primary Controls</h3>
+
+        <div class="help-content">
+            <ul>
+                <li>
+                    <span class="term">Type</span>
+                    <span class="def">
+                        The stylesheet output type. The default is 'CSS'. You can also select 'SCSS' if 
+                        you would prefer Sass SCSS output.
+                    </span>
+                </li>
+                <li>
+                    <span class="term">Indent</span>
+                    <span class="def">
+                        The indent spacing to use.
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <h3>Copy to Clipboard</h3>
+        <div class="help-content">
+            <p>
+                You can copy the stylesheet to your clipboard easily by pressing the button located just above the generated stylesheet. If your browser does not support copy operations, you can still manually copy the text by right-clicking the selected text and choose 'Copy'.
+            </p>
+        </div>
+
+        <h3>Advanced</h3>
+
+        <div class="help-content">
+            <ul>
+                <li>
+                    <span class="term">Retina Image Name</span>
+                    <span class="def">
+                        The name of the Retina sprite file. Leave blank for default. The default 
+                        value is 'icons-retina'.
+                    </span>
+                </li>
+
+                <li>
+                    <span class="term">Normal Image Name</span>
+                    <span class="def">
+                        The name of the normal sprite file. Leave blank for default. The default 
+                        value is 'icons'.
+                    </span>
+                </li>
+                <li>
+                    <span class="term">Sprite Class Name</span>
+                    <span class="def">
+                        The CSS class name of the sprite. Leave blank for default. The default 
+                        value is 'icon'.
+                    </span>
+                </li>
+                <li>
+                    <span class="term">Class Prefix</span>
+                    <span class="def">
+                        The prefix to attach to all icon class names. The icon class name is 
+                        the name of the file.
+                    </span>
+                </li>
+                <li>
+                    <span class="term">Class Suffix</span>
+                    <span class="def">
+                        The suffix to attach to all icon class names. The icon class name is 
+                        the name of the file.
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </popup-container>
+</div>

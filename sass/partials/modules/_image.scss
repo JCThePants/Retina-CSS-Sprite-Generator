@@ -1,0 +1,89 @@
+@charset "utf-8";
+@import "../_vars.scss";
+@import "../_mixins.scss";
+
+/** Drag Drop Images **/
+
+.image-retina-item {
+    border: 1px solid #464646;
+    width: 75px;
+    height: 75px;
+    margin: 0;
+    padding: 0;
+    border: 5px solid transparent;
+}
+
+.image-normal-item {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: 1px solid #464646;
+    width: 35px;
+    height: 35px;
+    margin: 0;
+    padding: 0;
+}
+
+ul[data-dnd-list] {
+    display: block;
+    min-height: 85px;
+        
+    .drag-container {
+        display: inline-block;
+        vertical-align: top;
+        width: 85px;
+        height: 85px;
+        padding: 5px;
+    }
+    
+    .dndPlaceholder {
+        display: inline-block;
+        vertical-align: top;
+        border: 1px solid #464646;
+        width: 85px;
+        height: 85px;
+        overflow: hidden;
+        margin: 0;
+    }
+    
+    .dndDraggingSource {
+        display: none;
+    }
+    
+    & > li {
+        z-index: 1;
+        @include transition(0.25s ease all);
+        &.selected {
+            background: blue;
+        }
+    }
+}
+
+.trash-list {
+    display: block;
+    position: relative;
+    background: #3f3f3f;
+    min-height: 85px;
+    margin: 5px 5px 5px 5px;
+    padding: 10px 0 10px 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.image-list, .trash-list-inner {
+    position: relative;
+    margin: 0 10px 0 10px;
+    padding: 10px;
+    border: 2px dashed #e0cbb0;
+    border-radius: 10px;
+    min-height: 230px;
+}
+
+.trash-list-inner {
+    min-height: 115px;
+    border: 2px dashed #818181;
+}
+
+ul[data-dnd-list],
+ul[data-dnd-list] > li {
+    position: relative;
+}

@@ -1,0 +1,174 @@
+@charset "utf-8";
+@import "../_vars.scss";
+@import "../_mixins.scss";
+
+/** Icons **/
+
+a.icon,
+span.icon {
+    display: inline-block;
+}
+
+div.icon {
+    display: block;
+}
+
+.icon {
+    background: url('../img/icons.png') no-repeat top left;
+    width: 32px;
+    height: 32px;
+    @include transition(0.2s all linear);
+    
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        background: url('../img/icons-retina.png') no-repeat top left;
+        background-size: 32px 241px;
+    }
+    &.disk {
+        background-position: 0 -175px;
+        opacity: 0.6;
+    }
+    &.arrow-dark {
+        background-position: 0 0;
+        width: 17px;
+        height: 12px;
+    }
+    &.arrow {
+        background-position: 0 -13px;
+        width: 17px;
+        height: 12px;
+    }
+    &.error-close {
+        background-position: 0 -26px;
+        width: 16px;
+        height: 16px;
+    }
+    &.copy {
+        background-position: 0 -43px;
+        opacity: 0.6;
+    }
+    &.image {
+        background-position: 0 -76px;
+        opacity: 0.2;
+        &.lighten {
+            opacity: 0.05;
+        }
+    }
+    &.settings {
+        background-position: 0 -109px;
+        margin-top: 9px;
+        margin-left: 5px;
+        vertical-align: top;
+        opacity: 0.6;
+        &.active {
+            opacity: 0.25;
+            -ms-transform: rotate(60deg);
+            -webkit-transform: rotate(60deg);
+            transform: rotate(60deg);
+        }
+    }
+    &.trash {
+        background-position: 0 -142px;
+        opacity: 0.3;
+    }
+    &.orientation {
+        background: none;
+        display: inline-block;
+        position: relative;
+        width: 17px;
+        height: 17px;
+        font-size: 0;
+        line-height: 0;
+        
+        span, span::before, span::after { 
+            position: absolute;
+            display: block;
+            width: 5px;
+            height: 5px;
+            border: 1px solid #000;
+            font-size: 0;
+            line-height: 0;
+            box-sizing: border-box;
+        }
+        
+        span {
+            &:before {
+                top: -1px;
+                left: -7px;
+                content: '';
+            }
+            &:after {
+                top: -1px;
+                left: 5px;
+                content: '';
+            }
+        }
+        
+        .top {
+            top: 0;
+            left: 6px;
+        }
+        .middle {
+            top: 6px;
+            left: 6px;
+        }
+        .bottom {
+            top: 12px;
+            left: 6px;
+        }
+        
+        &.vertical {
+            span {
+                &:after, &:before {
+                    display: none;
+                }
+            }
+        }
+        
+        &.horizontal {
+            .top, .bottom {
+                display: none;
+            }
+        }
+        
+        &.diagonal {
+            .top {
+                border: 1px solid transparent !important;
+                background: none !important;
+                
+                &:after {
+                    display: none;
+                }
+            }
+            
+            .middle {
+                &:before, &:after {
+                    display: none;
+                }
+            }
+            
+            .bottom {
+                border: 1px solid transparent !important;
+                background: none !important;
+                
+                &:before {
+                    display: none;
+                }
+            }
+        }
+    }
+    &.github {
+        display: block;
+        margin: 10px auto 0 auto;
+        background-position: 0 -208px;
+    }
+}
+
+.centered-icon {
+    &.icon {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-top: -16px;
+        margin-left: -16px;
+    }
+}

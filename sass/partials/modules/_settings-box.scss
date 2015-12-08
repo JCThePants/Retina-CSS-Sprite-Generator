@@ -1,0 +1,48 @@
+@charset "utf-8";
+@import "../_vars.scss";
+@import "../_mixins.scss";
+
+/** Advanced Settings **/
+.stylesheet-panel {
+    .settings-box {
+        height: 290px;
+    }
+}
+
+.sprites-panel {
+    .settings-box {
+        line-height: 49px;
+        height: 128px;
+    }
+}
+
+.settings-box {
+    overflow: hidden;
+    opacity: 1;
+    @include transition(0.2s all linear);
+    padding-bottom: 20px;
+    
+    &.hidden {
+        display: block !important;
+        opacity: 0;
+        height: 0;
+    }
+    
+    ul {
+        display: table;
+    }
+    
+    li {
+        display: table-row;
+    }
+    
+    .settings-input, .settings-descr {
+        display: table-cell;
+        vertical-align: middle;
+    }
+    
+    .settings-descr {
+        padding-left: 5px;
+    }
+}
+

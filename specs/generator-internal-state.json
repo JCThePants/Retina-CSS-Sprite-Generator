@@ -1,0 +1,53 @@
+/* The following is the format the generator stores its state internally */
+
+{
+    mode: 'retina', // the generator mode
+
+    sprites: {
+        showSettings: false,
+        spacing: 2, // the amount of spacing between images in the sprite (px)
+        padding: 2, // the amoount of extra empty space added around the images in the sprite (px)
+        orientation: 'vertical', // the sprite orientation. Possible values are 'vertical', 'horizontal', 'diagonal' and 'packed'
+        forcedWidth: '', // A pixel value that forces the width of all images added to the sprite
+        forcedHeight: '' // A pixel value that forces the height of all images added to the sprite
+    },
+
+    styles: {
+        showSettings: false,
+        indent: 4, // stylesheet indent spaces
+        type: 'css', // The stylehseet type. Possible values are 'css' and 'scss'.
+        prefix: '', // css image name prefix
+        suffix: '', // css image name suffix
+        spriteName: '', // the name of the stylesheet sprite class
+        imageName: '', // the name of the normal sprite file
+        retinaName: '', // the name of the retian sprite file
+    },
+
+    preview: {
+        bg: '#808080' // The background color to display behind sprite preview icons
+    },
+
+    // images
+    images: [
+        {
+            name: 'file', // the file name converted to a CSS usable class name
+            title: 'file (100x100)', // title to display to user
+            w: 100, // the actual width of the image
+            h: 100, // the actual height of the image
+            src: 'dataURI', // the image data
+            type: 'image type', // the image type
+            image: 'IMAGE ELEMENT', // the memory only image element
+
+            // Optional. A corresponding normal image to use instead of scaling the retina image
+            normal: {
+                name: 'file', // the file name converted to a CSS usable class name
+                title: 'file (100x100)', // title to display to user
+                w: 100, // the actual width of the image
+                h: 100, // the actual height of the image
+                src: 'dataUri', // the image data
+                type: 'image type', // the image type
+                image: 'IMAGE ELEMENT', // the memory only image element
+            }
+        }
+    ]
+}

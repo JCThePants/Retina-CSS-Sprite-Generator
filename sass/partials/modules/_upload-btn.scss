@@ -1,0 +1,27 @@
+@charset "utf-8";
+@import "../_vars.scss";
+
+/** Upload Button **/
+.upload-btn {
+    display: block;
+    position: relative;
+    background: #5b5b5b;
+    min-height: 200px;
+    margin: 15px 5px 5px 5px;
+    padding: 10px 0 10px 0;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    overflow: hidden;
+    
+    input {
+        position: absolute;
+        top: 0;
+        left: -25px; // hide carret on ie 10
+        right: 0;
+        bottom: 0;
+        width: 130%; // hide carret on ie 10
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+}

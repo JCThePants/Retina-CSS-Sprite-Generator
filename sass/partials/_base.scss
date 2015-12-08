@@ -1,0 +1,160 @@
+@charset "utf-8";
+@import "_vars.scss";
+
+/** Base Styles **/
+html {
+    color: #ded3cc;
+    line-height: 1em;
+    min-height: 100%;
+    min-width: 600px;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    min-width: 600px;
+    height: 100%;
+    font-size: 14px;
+    font-family: Helvetica, Arial, sans-serif;
+    background: #262626;
+    overflow: auto;
+    font-weight: normal;
+    padding: 20px 0 30px 0;
+}
+
+a {
+    color: #4a90e2;
+    outline: 0;
+    text-decoration: none;
+}
+
+a:hover,
+a:active,
+a:visited,
+a:focus {
+    text-decoration: none;
+}
+
+[draggable] {
+    user-select: none;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: bold;
+    margin: 0 0 20px 0;
+    .title-note {
+        color: #cbbaaf;
+        font-weight: normal;
+    }
+}
+
+h1 {
+    color: #e0cbb0;
+    font-size: 24px;
+    .title-note {
+        font-size: 22px;
+    }
+}
+
+h2 {
+    color: #e0cbb0;
+    font-size: 20px;
+    .title-note {
+        font-size: 18px;
+    }
+}
+
+h3 {
+    font-size: 16px;
+    padding-top: 10px;
+    .title-note {
+        font-size: 14px;
+    }
+}
+
+.content {
+    max-width: 1000px;
+    margin: 0 auto 0 auto;
+}
+
+p {
+    line-height: 17px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    &+p {
+        margin-top: 0;
+    }
+}
+
+.sprites-container {
+    display: block;
+    drag-scroll {
+        display: block;
+        overflow-y: hidden;
+        overflow-x: auto;
+        padding: 0;
+        margin: 0;
+    }
+    .center {
+        display: none;
+    }
+    .left,
+    .right {
+        background: #5b5b5b;
+        padding: 5px;
+        display: block;
+        width: 100%;
+        padding: 0 10px 10px 10px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        min-height: 160px;
+    }
+    .right {
+        margin-top: 5px;
+    }
+    &.vertical {
+        display: table;
+        table-layout: fixed;
+        border-collapse: separate;
+        width: 100%;
+        min-height: 315px;
+        .left,
+        .right {
+            display: table-cell;
+            width: 50%;
+            border-top: none;
+        }
+        .center {
+            display: table-cell;
+            width: 5px;
+        }
+    }
+}
+
+drag-scroll,
+css-sprite,
+image-upload,
+text-box,
+popup-button,
+popup-container {
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+popup-button {
+    cursor: pointer;
+}
+
+input {
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
