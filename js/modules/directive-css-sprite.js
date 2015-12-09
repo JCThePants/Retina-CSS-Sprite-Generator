@@ -119,19 +119,13 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
         function renderImages(images, scope) {
             var s = getScopeData(scope);
 
-            s.context.clearRect(0, 0, s.canvas.width, s.canvas.height);
-
             var canvasSize = getCanvasSize(images, s);
-            var width = s.canvas.width = canvasSize.w;
-            var height = s.canvas.height = canvasSize.h;
+            var width = s.buffer.width = canvasSize.w;
+            var height = s.buffer.height = canvasSize.h;
             var common = canvasSize.common;
-            s.canvas.style.width = width + 'px';
-            s.canvas.style.height = height + 'px';
-
+                        
             // draw images into canvas
             scope.promise = $timeout(function () {
-
-                s.context.clearRect(0, 0, s.canvas.width, s.canvas.height);
 
                 var output = scope.output = [];
 
@@ -175,7 +169,8 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
 
                     output.push(outData);
                 }
-
+                
+                flushBuffer(s);
                 output.compr = width * height * (s.canvas.toDataURL("image/jpeg", 0.5).length / s.canvas.toDataURL("image/jpeg", 1).length);
                 output.src = s.canvas.toDataURL();
                 scope.promise = null;
@@ -208,16 +203,12 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
 
             bp(box);
 
-            s.canvas.width = box.w;
-            s.canvas.height = box.h;
-            s.canvas.style.width = box.w + 'px';
-            s.canvas.style.height = box.h + 'px';
+            s.buffer.width = box.w;
+            s.buffer.height = box.h;
             var common = sizeTracker.mostCommon(0.55);
 
             // draw images into canvas
             scope.boxPromise = $timeout(function () {
-
-                s.context.clearRect(0, 0, s.canvas.width, s.canvas.height);
 
                 var output = scope.output = [];
 
@@ -249,17 +240,31 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
 
                     output.push(outData);
                 }
+                flushBuffer(s);
                 output.compr = box.w * box.h * (s.canvas.toDataURL("image/jpeg", 0.5).length / s.canvas.toDataURL("image/jpeg", 1).length);
                 output.src = s.canvas.toDataURL();
                 scope.boxPromise = null;
             }, 10);
         }
 
+        // draw buffered canvas to output canvas
+        function flushBuffer(s) {
+            s.canvas.width = s.buffer.width;
+            s.canvas.height = s.buffer.height;
+            s.canvas.style.width = s.buffer.width + 'px';
+            s.canvas.style.height = s.buffer.width.height + 'px';
+            
+            var context = s.canvas.getContext('2d');
+            context.clearRect(0, 0, s.canvas.width, s.canvas.height);
+            context.drawImage(s.buffer, 0, 0, s.canvas.width, s.canvas.height);
+        }        
 
         function getScopeData(scope) {
+            var buffer = document.createElement("CANVAS");
             return {
                 canvas: scope.canvas,
-                context: scope.canvas.getContext("2d"),
+                buffer: buffer,
+                context: buffer.getContext("2d"),
                 scale: scope.scale || 1,
                 spacing: Math.ceil((typeof scope.spacing !== 'undefined' ? scope.spacing : 2) * (scope.scale || 1)),
                 padding: Math.ceil((typeof scope.spacing !== 'undefined' ? scope.padding : 2) * (scope.scale || 1)),
