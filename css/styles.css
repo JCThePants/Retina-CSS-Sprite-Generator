@@ -283,6 +283,10 @@ input::-webkit-inner-spin-button {
   display: none !important;
 }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 /***** Modules *****/
 /** Error Message **/
 .error-message {
@@ -762,6 +766,12 @@ sprite-preview iframe {
   width: 100%;
   height: 100%;
   background: #808080;
+  min-height: 150px;
+}
+
+.preview-panel .sprites-container .left,
+.preview-panel .sprites-container .right {
+  min-height: 208px;
 }
 
 /** Dropdown Select **/
@@ -1206,6 +1216,7 @@ h3 + .sprite-details {
   line-height: 17px;
   border-top: 1px solid #282828;
   border-bottom: 1px solid #6a6a6a;
+  min-height: 185px;
 }
 
 .stylesheet .div {

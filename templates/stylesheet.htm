@@ -105,7 +105,7 @@
 
         <div class="stylesheet">
 
-            <space-indent data-spaces="g.styles.indent" data-update="spriteData" id="cssStylesheet">
+            <space-indent id="cssStylesheet" class="ng-cloak" data-spaces="g.styles.indent" data-update="spriteData">
                 <div>
                     .<span class="css-selector">{{g.styles.spriteName || 'icon'}}</span> {
                 </div>
@@ -166,7 +166,7 @@
     </div>
 
     <!-- SCSS Preview-->
-    <div class="stylesheet-container" data-ng-class="{hidden:g.styles.type!=='scss'}">
+    <div class="stylesheet-container hidden" data-ng-class="{'hidden':g.styles.type!=='scss'}">
 
         <div class="stylesheet-header">
             <a href="#" class="icon copy" data-copy-btn="scssStylesheet" data-on-success="confirmCopy(true)" data-on-fail="confirmCopy(false)" title="Copy Stylesheet to Clipboard"></a>

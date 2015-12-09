@@ -16,7 +16,7 @@
             <div class="image-list">
                 
                 <ul data-dnd-list="g.images" data-dnd-horizontal="true">
-                    <li class="drag-container" 
+                    <li class="drag-container ng-cloak" 
                         data-ng-repeat="image in g.images" 
                         data-dnd-draggable="image" 
                         data-dnd-moved="g.images && g.images.splice($index, 1)">
@@ -46,7 +46,7 @@
     </div>
 
     <!-- Normal -->
-    <div data-show-mode="normal">
+    <div class="hidden" data-show-mode="normal">
         <image-upload class="upload-btn" title="Click here or drop image to add." data-output="g.images" data-multiple>
             <div class="icon image centered-icon" data-ng-class="{'lighten':g.images.length > 0}"></div>
             <div class="image-list">

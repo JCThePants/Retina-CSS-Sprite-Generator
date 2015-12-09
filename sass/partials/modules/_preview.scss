@@ -3,10 +3,21 @@
 @import "../_mixins.scss";
 
 /** Sprite Preview **/
+
 sprite-preview {
     iframe {
         width: 100%;
         height: 100%;
         background: #808080;
+        min-height: 150px;
+    }
+}
+
+.preview-panel {
+    .sprites-container {
+        .left,
+        .right {
+            min-height: 208px;
+        }
     }
 }

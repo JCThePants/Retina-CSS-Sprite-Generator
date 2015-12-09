@@ -60,7 +60,7 @@
         </ul>
     </div>
     
-    <div class="select" title="Padding" 
+    <div class="select hidden" title="Padding" 
          data-model="g.sprites.padding" 
          data-show-mode="normal">
         
@@ -157,7 +157,7 @@
     </div>
 
     <!-- Sprites (NORMAL) -->
-    <div class="panel-content" data-show-mode="normal">
+    <div class="panel-content hidden" data-show-mode="normal">
         <div class="sprites-container">
             <div class="left">
                 <ul class="sprite-details">
@@ -197,26 +197,33 @@
 
     <!-- Sprites (RETINA) -->
     <div class="panel-content" data-show-mode="retina">
-        <div class="sprites-container" data-ng-class="g.sprites.orientation">
+        <div class="sprites-container vertical" data-ng-class="g.sprites.orientation">
 
             <div class="left">
                 <h3>Normal</h3>
 
                 <ul class="sprite-details">
                     <li>
-                        <span class="term">Size:</span><span class="def">
-                        {{spriteData.w}}<span class="unit">px</span>
-                        <span class="by">x</span> {{spriteData.h}}
-                        <span class="unit">px</span>
+                        <span class="term">Size:</span>
+                        <span class="def">
+                            <span class="ng-cloak">
+                                {{spriteData.w}}<span class="unit">px</span>
+                                <span class="by">x</span> {{spriteData.h}}
+                                <span class="unit">px</span>
+                            </span>
                         </span>
                     </li>
                     <li>
                         <span class="term">Volume:</span>
-                        <span class="def">{{spriteData.w * retinaSpriteData.h | number:0}}</span>
+                        <span class="ng-cloak">
+                            <span class="def">{{spriteData.w * retinaSpriteData.h | number:0}}</span>
+                        </span>
                     </li>
                     <li>
                         <span class="term">Compr:</span>
-                        <span class="def">{{spriteData.compr | number:0}} <span class="unit">(estimate)</span></span>
+                        <span class="ng-cloak">
+                            <span class="def">{{spriteData.compr | number:0}} <span class="unit">(estimate)</span></span>
+                        </span>
                     </li>
                 </ul>
 
@@ -244,19 +251,30 @@
 
                 <ul class="sprite-details">
                     <li>
-                        <span class="term">Size:</span><span class="def">
-                        {{retinaSpriteData.w}}<span class="unit">px</span>
-                        <span class="by">x</span> {{retinaSpriteData.h}}
-                        <span class="unit">px</span>
+                        <span class="term">Size:</span>
+                        <span class="def">
+                            <span class="ng-cloak">
+                                {{retinaSpriteData.w}}<span class="unit">px</span>
+                                <span class="by">x</span> {{retinaSpriteData.h}}
+                                <span class="unit">px</span>
+                            </span>
                         </span>
                     </li>
                     <li>
                         <span class="term">Volume:</span>
-                        <span class="def">{{retinaSpriteData.w * retinaSpriteData.h | number:0}}</span>
+                        <span class="def">
+                            <span class="ng-cloak">
+                                {{retinaSpriteData.w * retinaSpriteData.h | number:0}}
+                            </span>
+                        </span>
                     </li>
                     <li>
                         <span class="term">Compr:</span>
-                        <span class="def">{{retinaSpriteData.compr | number:0}} <span class="unit">(estimate)</span></span>
+                        <span class="def">
+                            <span class="ng-cloak">
+                                {{retinaSpriteData.compr | number:0}} <span class="unit">(estimate)</span>
+                            </span>
+                        </span>
                     </li>
                 </ul>
 

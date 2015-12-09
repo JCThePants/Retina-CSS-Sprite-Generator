@@ -241,6 +241,6 @@ define('app', ['angular', 'angular-drag-drop-lists'], function (angular, dnd) {
     angular.element(document).ready(function () {
         angular.bootstrap(document.body, ['app']);
     });
-s
+
     return app;
 });
