@@ -1,5 +1,5 @@
 define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], function (angular, app, bp, bgImage) {
-    
+
     document.registerElement && document.registerElement('css-sprite');
 
     /* DIRECTIVE: (<sprite>) Renders sprite from an input array and optionally outputs data for use in generating a stylesheet. */
@@ -26,8 +26,9 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
                 scope.unparsedIconHeight = attrs.iconHeight;
                 scope.itemSource = attrs.itemSource;
                 scope.renderChild = typeof attrs.renderChild !== 'undefined';
-                
-                scope.$watchGroup(['source.length', 'scale', 'spacing', 'padding', 'orientation', 'iconWidth', 'iconHeight', 'trigger'], function () {
+                var promise;
+
+                scope.$watchGroup(['source.length', 'scale', 'spacing', 'padding', 'orientation', 'iconWidth', 'iconHeight', 'trigger'], function (e) {
                     if (!scope.source || elem.hasClass('ng-hide'))
                         return;
 
@@ -43,21 +44,27 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
 
                     scope.iconWidth = parseInt($parse(scope.unparsedIconWidth)(scope.$parent));
                     scope.iconHeight = parseInt($parse(scope.unparsedIconHeight)(scope.$parent));
+                    
+                    if (promise)
+                        $timeout.cancel(promise);
 
-                    var imgLoader = new RefImageLoader(scope, function (images) {
+                    promise = $timeout(function () {
+                        var imgLoader = new RefImageLoader(scope, function (images) {
 
-                        if (scope.orientation === 'packed') {
-                            renderPack(images, scope);
-                        } else {
-                            renderImages(images, scope);
+                            if (scope.orientation === 'packed') {
+                                renderPack(images, scope);
+                            } else {
+                                renderImages(images, scope);
+                            }
+                            scope.refImages = images;
+                        });
+
+                        for (var i = 0, data; data = scope.source[i]; i++) {
+                            imgLoader.add(data, i);
                         }
-                        scope.refImages = images;
-                    });
-
-                    for (var i = 0, data; data = scope.source[i]; i++) {
-                        imgLoader.add(data, i);
-                    }
-                    imgLoader.complete();
+                        imgLoader.complete();
+                        promise = null;
+                    }, 10);
                 });
             }
         };
@@ -236,7 +243,7 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
                     // only add sizes if they deviate from the most common sizes
                     if (common.width !== item.sizes.cw)
                         outData.w = item.sizes.cw;
-                    
+
                     if (common.height !== item.sizes.ch)
                         outData.h = item.sizes.ch;
 
@@ -360,7 +367,7 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
 
         // get sizes for an image
         function getImageSizes(data, s) {
-                        
+
             var result = {
                 dw: Math.ceil(data.w * (data.parent ? 1 : s.scale)),
                 dh: Math.ceil(data.h * (data.parent ? 1 : s.scale)),
@@ -369,7 +376,7 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
                 y: s.padding,
                 x: s.padding
             };
-            
+
             // force image to fit into constraints
             if (s.iconWidth || s.iconHeight) {
                 var slotWidth = (result.cw = s.iconWidth ? s.iconWidth : result.cw);
