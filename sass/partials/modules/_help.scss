@@ -36,6 +36,7 @@
     border-left: 5px solid #0141a5;
     border-top: 1px solid #3a3a3a;
     border-bottom: 1px solid #3a3a3a;
+    text-shadow: none;
     @include transition(0.35s ease all);
     &.open {
         @include transition(0.55s ease all);
@@ -45,6 +46,7 @@
     }
     h3 {
         color: #000;
+        text-shadow: none;
     }
     ul {
         display: inline-table;

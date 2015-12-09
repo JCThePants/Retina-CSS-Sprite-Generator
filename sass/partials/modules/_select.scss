@@ -7,7 +7,7 @@
     position: relative;
     display: inline-block;
     background: #333333;
-    border: 1px solid #202020;
+    border: 1px solid #101010;
     border-radius: 2px;
     min-width: 175px;
     height: 39px;
@@ -71,7 +71,7 @@
         overflow-x: hidden;
         z-index: 500000;
         cursor: default;
-        border: 1px solid #202020;
+        border: 1px solid #101010;
         border-top: none;
         opacity: 0;
         li {
@@ -125,6 +125,7 @@
         min-width: 200px;
     }
     &.open {
+        text-shadow: none;
         background: #b7b7b7;
         border-bottom: none;
         .value {

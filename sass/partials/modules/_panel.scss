@@ -9,9 +9,11 @@
     background: #535353;
     margin: 2px 20px 2px 20px;
     padding: 15px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
     border-top: 1px solid #6a6a6a;
     border-bottom: 1px solid #282828;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
     overflow: hidden;
     
     .panel-content {
