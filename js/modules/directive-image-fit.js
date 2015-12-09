@@ -13,11 +13,9 @@ define(['angular', 'app', 'image-background'], function (angular, app, bgImage) 
                 function update(src) {
                     if (!src || currentSrc === src)
                         return;
-
-                    elem.css('opacity', 0);
-
+                    
                     currentSrc = src;
-
+                    
                     var image = new Image();
                     image.onload = function () {
 
@@ -37,14 +35,33 @@ define(['angular', 'app', 'image-background'], function (angular, app, bgImage) 
                             }
                         }
 
-                        var ratio = image.height / image.width;
-                        var imgWidth = Math.min(canvas.width, image.width);
-                        var imgHeight = imgWidth * ratio;
-                        var top = (canvas.height - imgHeight) / 2;
-                        var left = (canvas.width - imgWidth) / 2;
+                        var width = image.width; // the new image draw width
+                        var height = image.height; // the new image draw height
 
-                        context.drawImage(image, left, top, imgWidth, imgHeight);
+                        if (image.width > canvas.width || image.height > canvas.height) {
+
+                            // get ratio of image width to height and make the image the same width as the container
+                            var ratio = image.height / image.width;
+                            width = canvas.width;
+                            height = canvas.width * ratio; // maintain aspect ratio
+
+                            // make sure the new size isn't taller than the container
+                            if (height > canvas.height) {
+
+                                // make the image the same height as the container
+                                ratio = image.width / image.height;
+                                width = canvas.height * ratio; // maintain aspect ratio
+                                height = canvas.height;
+                            }
+                        }
+                        
+                        // center image
+                        var top =  (canvas.height - height) / 2; // The offset of the image from the top of the container
+                        var left = (canvas.width - width) / 2; // The offset of the image from the left of the container
+                        
+                        context.drawImage(image, left, top, width, height);
                         elem[0].src = canvas.toDataURL('image/png');
+                        currentSrc = elem[0].src;
                         elem.css('opacity', 1);
                     }
                     image.src = src;
