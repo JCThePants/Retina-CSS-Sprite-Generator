@@ -5,18 +5,22 @@
 /** Dropdown Select **/
 .select {
     position: relative;
-    display: inline-block;
+    display: block;
     background: #333333;
     border: 1px solid #101010;
     border-radius: 2px;
     min-width: 175px;
     height: 39px;
-    margin: 5px 10px 10px 0;
+    margin: 5px 0 10px 0;
     text-indent: 0;
     cursor: pointer;
     text-align: left;
     @include transition(0.3s ease background-color);
     @include user-select(none);
+    @media (min-width: $screen-sm) {
+        display: inline-block;
+        margin: 5px 10px 10px 0;
+    }
     .value,
     .title {
         display: inline-block;
@@ -52,7 +56,7 @@
         background-position: 0 -13px;
         @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
             background: url('../img/icons-retina.png') no-repeat top left;
-            background-size: 32px 175px;
+            background-size: 32px 208px;
         }
     }
     ul.dropdown {
@@ -64,7 +68,7 @@
         right: 1px;
         top: 37px;
         height: 0;
-        max-height: 155px;
+        max-height: 275px;
         min-width: 100%;
         background: #333333;
         overflow: auto;
@@ -74,6 +78,11 @@
         border: 1px solid #101010;
         border-top: none;
         opacity: 0;
+        
+        @media (min-width: $screen-md) {
+            max-height: 155px;
+        }
+        
         li {
             position: relative;
             color: #fff;
@@ -81,9 +90,10 @@
             cursor: pointer;
             padding: 0 0 0 17px;
             text-align: left;
-            line-height: 30px;
+            line-height: 55px;
             font-weight: normal;
-            font-size: 13px;
+            font-size: 14px;
+            
             &:hover {
                 background: #4a90e2;
                 color: #fff;
@@ -116,8 +126,18 @@
             }
             .icon {
                 position: absolute;
-                top: 6px;
-                right: 7px;
+                top: 20px;
+                right: 10px;
+            }
+            
+            @media (min-width: $screen-md) {
+                line-height: 30px;
+                font-size: 13px;
+                
+                .icon {
+                    top: 6px;
+                    right: 7px;    
+                }
             }
         }
     }

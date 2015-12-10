@@ -19,13 +19,15 @@
 .settings-box {
     overflow: hidden;
     opacity: 1;
-    @include transition(0.2s all linear);
+    padding-top: 10px;
     padding-bottom: 20px;
+    @include transition(0.2s all linear);
     
     &.hidden {
         display: block !important;
         opacity: 0;
         height: 0;
+        padding-top: 0;
     }
     
     ul {
@@ -43,6 +45,10 @@
     
     .settings-descr {
         padding-left: 5px;
+    }
+    
+    @media (min-width: $screen-sm) {
+        padding-top: 0;
     }
 }
 

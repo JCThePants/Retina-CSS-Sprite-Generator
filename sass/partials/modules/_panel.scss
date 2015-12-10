@@ -3,29 +3,26 @@
 @import "../_mixins.scss";
 
 /** Panels **/
+
 .panel {
     display: block;
     position: relative;
     background: #535353;
-    margin: 2px 20px 2px 20px;
-    padding: 15px;
+    margin: 2px 5px 2px 5px;
+    padding: 7px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
     border-top: 1px solid #6a6a6a;
     border-bottom: 1px solid #282828;
     border-left: 1px solid #000;
     border-right: 1px solid #000;
     overflow: hidden;
-    
-    .panel-content {
-        padding: 5px;
-    }
     p {
         text-align: justify;
     }
     .half-box {
-        width: 50%;
-        padding-right: 12px;
-        padding-left: 12px;
+        width: 100%;
+        padding-right: 0;
+        padding-left: 0;
         float: left;
         p {
             line-height: 22px;
@@ -36,5 +33,20 @@
         clear: both;
         padding-top: 20px;
         line-height: 22px;
+    }
+    @media (min-width: $screen-sm) {
+        margin: 2px 20px 2px 20px;
+        padding: 15px;
+        .panel-content {
+            padding: 5px;
+        }
+        .half-box {
+            width: 50%;
+            padding-right: 12px;
+            padding-left: 12px;
+        }
+        .full-box {
+            padding-top: 20px;
+        }
     }
 }

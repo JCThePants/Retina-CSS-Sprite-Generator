@@ -4,7 +4,9 @@ require.config({
         'requireLib': 'libs/require.min',
         'angular': 'libs/angular.min',
         'angular-drag-drop-lists': 'libs/angular-drag-and-drop-lists.min',
-        'image-background': 'modules/var-image-background'
+        'ios-drag-drop': 'libs/ios-drag-drop',
+        'image-background': 'modules/var-image-background',
+        'cache': 'modules/factory-cache'
     },
     shim: {
         'main' : {
@@ -17,6 +19,10 @@ require.config({
         'angular-drag-drop-lists': {
             deps: ['angular'],
             exports: 'angular'
+        },
+        'ios-drag-drop': {
+            deps: ['angular', 'angular-drag-drop-lists', 'app'],
+            exports: 'angular'
         }
     }
 });
@@ -24,6 +30,7 @@ require.config({
 require([
         'angular',
         'angular-drag-drop-lists',
+        'ios-drag-drop',
         'app',
         'modules/directive-a',
         'modules/directive-anchor-smooth-scroll',

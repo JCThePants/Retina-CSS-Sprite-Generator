@@ -19,7 +19,9 @@
     border-top: 1px solid #282828;
     border-bottom: 1px solid #6a6a6a;
     min-height: 185px;
-
+    white-space: nowrap;
+    overflow-x: auto;
+    
     .div {
         font-size: 15px;
         line-height: 17px;

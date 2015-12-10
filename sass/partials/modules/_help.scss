@@ -22,8 +22,8 @@
 .help-container {
     display: block;
     position: absolute;
-    top: 50px;
-    bottom: 15px;
+    top: 40px;
+    bottom: 5px;
     left: 1100px;
     width: 0;
     background: #bababc;
@@ -38,6 +38,11 @@
     border-bottom: 1px solid #3a3a3a;
     text-shadow: none;
     @include transition(0.35s ease all);
+    @media (min-width: $screen-sm) {
+        top: 50px;
+        bottom: 15px;
+    }
+        
     &.open {
         @include transition(0.55s ease all);
         width: 100%;

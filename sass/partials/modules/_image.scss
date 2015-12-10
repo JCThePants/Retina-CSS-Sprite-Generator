@@ -65,25 +65,40 @@ ul[data-dnd-list] {
 .trash-list {
     display: block;
     position: relative;
-    background: #3f3f3f;
     min-height: 85px;
+    background: #3f3f3f;
+    border-radius: 10px;
     margin: 5px 5px 5px 5px;
-    padding: 10px 0 10px 0;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.75);
+    
+    @media (min-width: $screen-sm) {
+        padding: 10px 0 10px 0;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.75);
+        border-radius: 0;
+    }
 }
 
 .image-list, .trash-list-inner {
     position: relative;
-    margin: 0 10px 0 10px;
-    padding: 10px;
+    margin: 0 5px 0 5px;
+    padding: 5px 5px 45px 5px;
     border: 2px dashed #e0cbb0;
     border-radius: 10px;
     min-height: 230px;
+    
+    @media (min-width: $screen-sm) {
+        margin: 0 10px 0 10px;
+        padding: 10px;
+    }
 }
 
 .trash-list-inner {
     min-height: 115px;
     border: 2px dashed #818181;
+    margin: 0;
+    
+    @media (min-width: $screen-sm) {
+        margin: 0 10px 0 10px;
+    }
 }
 
 ul[data-dnd-list],

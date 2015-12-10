@@ -1,23 +1,35 @@
-define(['angular', 'app', 'image-background'], function (angular, app, bgImage) {
+define(['angular', 'app', 'image-background', 'cache'], function (angular, app, bgImage) {
 
     /* DIRECTIVE: (data-image-fit) Use on an image element. Gets the image and resizes it to fit the width and height of the container while
                 maintaining the aspect ratio of the displayed image. If the image is smaller than the element, it is simply centered. */
-    app.directive('imageFit', function () {
+    app.directive('imageFit', ['cache', function (cache) {
         return {
             restrict: 'A',
             link: function (scope, elem, attrs) {
 
+                var operationId = 0;
                 var currentSrc = null;
                 elem.css('opacity', 0);
 
-                function update(src) {
-                    if (!src || currentSrc === src)
+                function update(src, opId) {
+                    if (!src || currentSrc === src || src.length < 8)
                         return;
-                    
+
                     currentSrc = src;
-                    
+
+                    var cachedSrc = cache.get(src);
+                    if (cachedSrc) {
+                        elem[0].src = cachedSrc
+                        currentSrc = cachedSrc;
+                        elem.css('opacity', 1);
+                        return;
+                    }
+
                     var image = new Image();
                     image.onload = function () {
+
+                        if (opId !== operationId)
+                            return;
 
                         var canvas = document.createElement('CANVAS');
                         var context = canvas.getContext('2d');
@@ -54,14 +66,16 @@ define(['angular', 'app', 'image-background'], function (angular, app, bgImage) 
                                 height = canvas.height;
                             }
                         }
-                        
+
                         // center image
-                        var top =  (canvas.height - height) / 2; // The offset of the image from the top of the container
+                        var top = (canvas.height - height) / 2; // The offset of the image from the top of the container
                         var left = (canvas.width - width) / 2; // The offset of the image from the left of the container
-                        
+
                         context.drawImage(image, left, top, width, height);
-                        elem[0].src = canvas.toDataURL('image/png');
-                        currentSrc = elem[0].src;
+                        elem[0].src = currentSrc = canvas.toDataURL('image/png');
+                        if (currentSrc && currentSrc.length > 8) {
+                            cache.set(src, currentSrc);
+                        }
                         elem.css('opacity', 1);
                     }
                     image.src = src;
@@ -70,11 +84,12 @@ define(['angular', 'app', 'image-background'], function (angular, app, bgImage) 
                 scope.$watch(function () {
                     return elem[0].src;
                 }, function (src) {
-                    src && update(src);
+                    operationId++;
+                    src && update(src, operationId);
                 })
             }
         }
-    });
+    }]);
 
 
 });

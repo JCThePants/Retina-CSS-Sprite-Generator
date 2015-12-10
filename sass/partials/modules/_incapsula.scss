@@ -1,0 +1,12 @@
+@charset "utf-8";
+@import "../_vars.scss";
+@import "../_mixins.scss";
+
+/** Incapsula Service **/
+.incap_page-tooltip {
+    display: none;
+    
+    @media (min-width: $screen-md) {
+        display: block;
+    }
+}
