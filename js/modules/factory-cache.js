@@ -1,6 +1,6 @@
 define(['angular', 'app'], function (angular, app) {
 
-    /** DIRECTIVE (<A>) Prevent clicks on disabled buttons **/
+    /** FACTORY: Global Cache **/
     app.factory('cache', function () {
         
         var cache = {};
