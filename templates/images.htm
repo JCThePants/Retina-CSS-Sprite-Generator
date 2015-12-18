@@ -50,7 +50,7 @@
         <image-upload class="upload-btn" title="Click here or drop image to add." data-output="g.images" data-multiple>
             <div class="icon image centered-icon" data-ng-class="{'lighten':g.images.length > 0}"></div>
             <div class="image-list">
-                <ul data-dnd-list="normalFiles" data-dnd-horizontal="true">
+                <ul data-dnd-list="g.images" data-dnd-horizontal="true">
                     <li class="drag-container" 
                         data-ng-repeat="image in g.images" 
                         data-dnd-draggable="image" 

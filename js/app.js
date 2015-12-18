@@ -6,7 +6,7 @@ define('app', ['angular', 'angular-drag-drop-lists'], function (angular, dnd) {
         .controller('AppCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
 
             var retinaMode = {};
-            var normalMode = [];
+            var normalMode = {};
 
             var gen = $scope.g = {
                 mode: 'retina', // the generator mode
@@ -82,7 +82,7 @@ define('app', ['angular', 'angular-drag-drop-lists'], function (angular, dnd) {
             // be restored if the mode is changed back
             $scope.$watch("g.mode", function (mode) {
                 if (mode === 'retina') {
-                    normalMode.images = gen.images;
+                    normalMode.images = gen.images || [];
                     normalMode.sprites = angular.extend(normalMode.sprites || {}, gen.sprites);
                     normalMode.styles = angular.extend(normalMode.styles || {}, gen.styles);
                     normalMode.preview = angular.extend(normalMode.preview || {}, gen.preview);
@@ -94,7 +94,7 @@ define('app', ['angular', 'angular-drag-drop-lists'], function (angular, dnd) {
                         gen.preview = angular.extend(gen.preview, retinaMode.preview);
                     }
                 } else if (mode === 'normal') {
-                    retinaMode.images = gen.images;
+                    retinaMode.images = gen.images || [];
                     retinaMode.sprites = angular.extend(retinaMode.sprites || {}, gen.sprites);
                     retinaMode.styles = angular.extend(retinaMode.styles || {}, gen.styles);
                     retinaMode.preview = angular.extend(retinaMode.preview || {}, gen.preview);
