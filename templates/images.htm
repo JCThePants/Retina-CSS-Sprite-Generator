@@ -1,10 +1,10 @@
 <div class="panel images-panel">
 
     <h2>Images</h2>
-    <popup-button class="help-btn" data-container-id="imagesHelp">?</popup-button>
+    <div class="help-btn" data-popup-button="imagesHelp">?</div>
 
     <!-- Retina -->
-    <div data-show-mode="retina">
+    <div data-mode="retina">
 
         <image-upload class="upload-btn" 
                       title="Click here or drop Retina image to add." 
@@ -46,7 +46,7 @@
     </div>
 
     <!-- Normal -->
-    <div class="hidden" data-show-mode="normal">
+    <div class="hidden" data-mode="normal">
         <image-upload class="upload-btn" title="Click here or drop image to add." data-output="g.images" data-multiple>
             <div class="icon image centered-icon" data-ng-class="{'lighten':g.images.length > 0}"></div>
             <div class="image-list">
@@ -83,7 +83,7 @@
     </div>
 
     <!-- Images Help -->
-    <popup-container id="imagesHelp" class="help-container">
+    <div id="imagesHelp" class="help-container" data-popup-box>
 
         <h3>Add Images</h3>
 
@@ -94,7 +94,7 @@
                 If your browser does not support dropping files, you can also click the box to open a file dialog.
             </p>
 
-            <div data-show-mode="retina">
+            <div data-mode="retina">
                 <p>
                     The images you add should be 2x larger than the actual size of the image you want to display on your 
                     webpage. In other words, add only your Retina images and the normal size sprite will be generated 
@@ -107,7 +107,7 @@
             </div>
         </div>
 
-        <div data-show-mode="retina">
+        <div data-mode="retina">
             <h3>Add Pre-made Normal Images</h3>
 
             <div class="help-content">
@@ -140,5 +140,5 @@
                 If you need to remove an image, drag it to the second smaller box beneath the main image box.
             </p>
         </div>
-    </popup-container>
+    </div>
 </div>

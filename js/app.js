@@ -1,8 +1,8 @@
-define('app', ['angular', 'angular-drag-drop-lists'], function (angular, dnd) {
+define('app', ['angular', 'angular-drag-drop-lists', 'rawUI'], function (angular) {
     
     function isDefined(obj) { return typeof obj !== 'undefined'; }
 
-    var app = angular.module('app', ['dndLists'])
+    var app = angular.module('app', ['dndLists', 'rawUI'])
         .controller('AppCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
 
             var retinaMode = {};
@@ -28,7 +28,7 @@ define('app', ['angular', 'angular-drag-drop-lists'], function (angular, dnd) {
                     suffix: '', // css image name suffix
                     spriteName: '', // the name of the stylesheet sprite class
                     imageName: '', // the name of the normal sprite file
-                    retinaName: '', // the name of the retian sprite file
+                    retinaName: '' // the name of the retian sprite file
                 },
                 
                 preview: {

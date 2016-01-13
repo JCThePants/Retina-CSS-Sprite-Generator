@@ -33,6 +33,7 @@
         </ul>
     </div>
 
+    <!-- error message -->
     <div class="error-message" data-ng-class="{'show':s.msg.invalidSize}">
         <p>
             Normal image must be 50% of the Retina image size.
@@ -43,23 +44,28 @@
         <a href="#" class="icon error-close" data-ng-click="s.msg.invalidSize=null"></a>
     </div>
 
+    <!-- content -->
     <div class="content">
 
         <div class="panel">
-            <h1><span data-show-mode="retina">Retina</span> CSS Sprite Generator</h1>
+            <h1><span data-mode="retina">Retina</span> CSS Sprite Generator</h1>
 
             <!-- Select Mode -->
-            <div class="select" title="Mode" data-model="g.mode" data-on-select="triggerSprites()">
-                <ul class="dropdown">
+            <div class="select-box" title="Mode" data-ng-model="g.mode" data-on-select="triggerSprites()">
+                <div class="display">
+                    <span class="title">Mode</span>
+                    <span class="value"></span>
+                </div>
+                <ul data-transition-height="select.isOpen">
                     <li data-value="retina">Retina</li>
                     <li data-value="normal">Normal</li>
                 </ul>
             </div>
             
             <!-- Session Options -->
-            <popup-button id="sessionOptions" class="session-options" data-container-id="sessionOptions">
-                <a href="#" class="icon disk"></a>
-                <ul>
+            <div class="session-options">
+                <a href="#" class="icon disk" data-popup-button="sessionOptions"></a>
+                <ul id="sessionOptions" data-popup-box>
                     <li>
                         <span class="text">Load Session</span>
                         <input type="file" accept=".json" data-load-session-btn>
@@ -68,10 +74,10 @@
                         <a href="." class="text" download="sprite-session.json" data-save-session-btn>Save Session</a>
                     </li>
                 </ul>
-            </popup-button>
+            </div>
     
             <!-- Intro Content -->
-            <div class="panel-content" data-show-mode="retina">
+            <div class="panel-content" data-mode="retina">
                 <div class="half-box">
                     <p>
                         Sprites reduce bandwidth used to request images from a server and help speed up 
@@ -95,7 +101,7 @@
                 </div>
             </div>
 
-            <div class="panel-content hidden"  data-show-mode="normal">
+            <div class="panel-content hidden"  data-mode="normal">
                 <div class="half-box">
                     <p>
                         Sprites reduce bandwidth used to request images from a server and help speed up your page 

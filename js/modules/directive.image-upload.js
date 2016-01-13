@@ -1,4 +1,4 @@
-define(['app', 'modules/directive-css-sprite'], function (app) {
+define(['app', 'modules/directive.css-sprite'], function (app) {
 
     /* DIRECTIVE: (data-image-upload) Image upload button */
     app.directive('imageUpload', ['$timeout', '$parse', function ($timeout, $parse) {

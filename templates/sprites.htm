@@ -1,88 +1,105 @@
 <div class="panel sprites-panel">
 
     <h2>Sprites</h2>
-    <popup-button class="help-btn" data-container-id="spritesHelp">?</popup-button>
+    <div class="help-btn" data-popup-button="spritesHelp">?</div>
 
-    <div class="select" title="Spacing" 
-         data-model="g.sprites.spacing" 
-         data-show-mode="retina">
-        
-        <ul class="dropdown">
-            <li data-value="0">0px</li>
-            <li data-value="2">1px</li>
-            <li data-value="4">2px</li>
-            <li data-value="6">3px</li>
-            <li data-value="8">4px</li>
-            <li data-value="10">5px</li>
-            <li data-value="12">6px</li>
-            <li data-value="14">7px</li>
-            <li data-value="16">8px</li>
-            <li data-value="18">9px</li>
-            <li data-value="20">10px</li>
+    <div class="select-box" title="Spacing"
+         data-ng-model="g.sprites.spacing"
+         data-mode="retina">
+
+        <div class="display">
+            <span class="title">Spacing</span>
+            <span class="value"></span>
+        </div>
+        <ul data-transition-height="select.isOpen">
+            <li data-value="0">0<span class="unit-of-measure">px</span></li>
+            <li data-value="2">1<span class="unit-of-measure">px</span></li>
+            <li data-value="4">2<span class="unit-of-measure">px</span></li>
+            <li data-value="6">3<span class="unit-of-measure">px</span></li>
+            <li data-value="8">4<span class="unit-of-measure">px</span></li>
+            <li data-value="10">5<span class="unit-of-measure">px</span></li>
+            <li data-value="12">6<span class="unit-of-measure">px</span></li>
+            <li data-value="14">7<span class="unit-of-measure">px</span></li>
+            <li data-value="16">8<span class="unit-of-measure">px</span></li>
+            <li data-value="18">9<span class="unit-of-measure">px</span></li>
+            <li data-value="20">10<span class="unit-of-measure">px</span></li>
         </ul>
     </div>
     
-    <div class="select hidden" title="Spacing" 
-         data-model="g.sprites.spacing" 
-         data-show-mode="normal">
-        
-        <ul class="dropdown">
-            <li data-value="0">0px</li>
-            <li data-value="1">1px</li>
-            <li data-value="2">2px</li>
-            <li data-value="3">3px</li>
-            <li data-value="4">4px</li>
-            <li data-value="5">5px</li>
-            <li data-value="6">6px</li>
-            <li data-value="7">7px</li>
-            <li data-value="8">8px</li>
-            <li data-value="9">9px</li>
-            <li data-value="10">10px</li>
+    <div class="select-box hidden" title="Spacing"
+         data-ng-model="g.sprites.spacing"
+         data-mode="normal">
+
+        <div class="display">
+            <span class="title">Spacing</span>
+            <span class="value"></span>
+        </div>
+        <ul data-transition-height="select.isOpen">
+            <li data-value="0">0<span class="unit-of-measure">px</span></li>
+            <li data-value="1">1<span class="unit-of-measure">px</span></li>
+            <li data-value="2">2<span class="unit-of-measure">px</span></li>
+            <li data-value="3">3<span class="unit-of-measure">px</span></li>
+            <li data-value="4">4<span class="unit-of-measure">px</span></li>
+            <li data-value="5">5<span class="unit-of-measure">px</span></li>
+            <li data-value="6">6<span class="unit-of-measure">px</span></li>
+            <li data-value="7">7<span class="unit-of-measure">px</span></li>
+            <li data-value="8">8<span class="unit-of-measure">px</span></li>
+            <li data-value="9">9<span class="unit-of-measure">px</span></li>
+            <li data-value="10">10<span class="unit-of-measure">px</span></li>
         </ul>
     </div>
     
-    <div class="select" title="Padding" 
-         data-model="g.sprites.padding" 
-         data-show-mode="retina">
-        
-        <ul class="dropdown">
-            <li data-value="0">0px</li>
-            <li data-value="2">1px</li>
-            <li data-value="4">2px</li>
-            <li data-value="6">3px</li>
-            <li data-value="8">4px</li>
-            <li data-value="10">5px</li>
-            <li data-value="12">6px</li>
-            <li data-value="14">7px</li>
-            <li data-value="16">8px</li>
-            <li data-value="18">9px</li>
-            <li data-value="20">10px</li>
+    <div class="select-box" title="Padding"
+         data-ng-model="g.sprites.padding"
+         data-mode="retina">
+        <div class="display">
+            <span class="title">Padding</span>
+            <span class="value"></span>
+        </div>
+        <ul data-transition-height="select.isOpen">
+            <li data-value="0">0<span class="unit-of-measure">px</span></li>
+            <li data-value="2">1<span class="unit-of-measure">px</span></li>
+            <li data-value="4">2<span class="unit-of-measure">px</span></li>
+            <li data-value="6">3<span class="unit-of-measure">px</span></li>
+            <li data-value="8">4<span class="unit-of-measure">px</span></li>
+            <li data-value="10">5<span class="unit-of-measure">px</span></li>
+            <li data-value="12">6<span class="unit-of-measure">px</span></li>
+            <li data-value="14">7<span class="unit-of-measure">px</span></li>
+            <li data-value="16">8<span class="unit-of-measure">px</span></li>
+            <li data-value="18">9<span class="unit-of-measure">px</span></li>
+            <li data-value="20">10<span class="unit-of-measure">px</span></li>
         </ul>
     </div>
     
-    <div class="select hidden" title="Padding" 
-         data-model="g.sprites.padding" 
-         data-show-mode="normal">
-        
-        <ul class="dropdown">
-            <li data-value="0">0px</li>
-            <li data-value="1">1px</li>
-            <li data-value="2">2px</li>
-            <li data-value="3">3px</li>
-            <li data-value="4">4px</li>
-            <li data-value="5">5px</li>
-            <li data-value="6">6px</li>
-            <li data-value="7">7px</li>
-            <li data-value="8">8px</li>
-            <li data-value="9">9px</li>
-            <li data-value="10">10px</li>
+    <div class="select-box hidden" title="Padding"
+         data-ng-model="g.sprites.padding"
+         data-mode="normal">
+        <div class="display">
+            <span class="title">Padding</span>
+            <span class="value"></span>
+        </div>
+        <ul data-transition-height="select.isOpen">
+            <li data-value="0">0<span class="unit-of-measure">px</span></li>
+            <li data-value="1">1<span class="unit-of-measure">px</span></li>
+            <li data-value="2">2<span class="unit-of-measure">px</span></li>
+            <li data-value="3">3<span class="unit-of-measure">px</span></li>
+            <li data-value="4">4<span class="unit-of-measure">px</span></li>
+            <li data-value="5">5<span class="unit-of-measure">px</span></li>
+            <li data-value="6">6<span class="unit-of-measure">px</span></li>
+            <li data-value="7">7<span class="unit-of-measure">px</span></li>
+            <li data-value="8">8<span class="unit-of-measure">px</span></li>
+            <li data-value="9">9<span class="unit-of-measure">px</span></li>
+            <li data-value="10">10<span class="unit-of-measure">px</span></li>
         </ul>
     </div>
 
-    <div class="select" title="Orientation" 
-         data-model="g.sprites.orientation">
-        
-        <ul class="dropdown">
+    <div class="select-box" title="Orientation"
+         data-ng-model="g.sprites.orientation">
+        <div class="display">
+            <span class="title">Orientation</span>
+            <span class="value"></span>
+        </div>
+        <ul data-transition-height="select.isOpen">
             <li data-value="vertical">
                 Vertical
                 <span class="icon orientation vertical">
@@ -118,35 +135,57 @@
         </ul>
     </div>
 
-    <a href="#" title="Advanced Settings" 
-       class="icon settings" 
-       data-ng-class="{'active':g.sprites.showSettings}" 
-       data-ng-click="g.sprites.showSettings=!g.sprites.showSettings"></a>
+    <a href="#" class="icon settings" title="Advanced Settings"
+       data-toggle="g.sprites.showSettings"></a>
 
-    <div class="settings-box hidden" data-ng-class="{'hidden':!g.sprites.showSettings}">
+    <div class="settings-box" data-transition-height="g.sprites.showSettings">
         <ul>
             <li>
-                <span class="settings-input">
-                    <text-box title="Icon Width" 
-                              data-max-chars="3" 
-                              data-type="number" 
-                              data-model="g.sprites.forcedWidth" 
-                              data-input-id="forcedHeight" 
-                              data-on-blur="triggerSprites()"></text-box>
-                </span>
+                <div class="settings-input">
+                    <!-- forced width -->
+                    <div class="control textbox">
+                        <input type="text" id="forced-width"
+                               data-ng-model="g.sprites.forcedWidth"
+                               data-max-chars="3"
+                               data-ng-blur="triggerSprites()"
+                               data-numbers-only>
+
+                        <label for="forced-width">
+                            <span class="title">
+                                Forced Width
+                            </span>
+                            <span class="value">
+                               <span>{{g.sprites.forcedWidth || 'auto'}}</span>
+                               <span class="unit-of-measure">px</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
                 <span class="settings-descr">
                     Force the pixel width of the icons.
                 </span>
             </li>
             <li>
-                <span class="settings-input">
-                    <text-box title="Icon Height" 
-                              data-max-chars="3" 
-                              data-type="number" 
-                              data-model="g.sprites.forcedHeight" 
-                              data-input-id="forcedWidth" 
-                              data-on-blur="triggerSprites()"></text-box>
-                </span>
+                <div class="settings-input">
+                    <!-- forced height -->
+                    <div class="control textbox">
+                        <input type="text" id="forced-height"
+                               data-ng-model="g.sprites.forcedHeight"
+                               data-max-chars="3"
+                               data-ng-blur="triggerSprites()"
+                               data-numbers-only>
+
+                        <label for="forced-height">
+                            <span class="title">
+                                Forced Height
+                            </span>
+                            <span class="value">
+                               <span>{{g.sprites.forcedHeight || 'auto'}}</span>
+                               <span class="unit-of-measure">px</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
                 <span class="settings-descr">
                     Force the pixel height of the icons.
                 </span>
@@ -155,7 +194,7 @@
     </div>
 
     <!-- Sprites (NORMAL) -->
-    <div class="panel-content hidden" data-show-mode="normal">
+    <div class="panel-content hidden" data-mode="normal">
         <div class="sprites-container">
             <div class="left">
                 <ul class="sprite-details">
@@ -194,7 +233,7 @@
     </div>
 
     <!-- Sprites (RETINA) -->
-    <div class="panel-content" data-show-mode="retina">
+    <div class="panel-content" data-mode="retina">
         <div class="sprites-container vertical" data-ng-class="g.sprites.orientation">
 
             <div class="left">
@@ -295,7 +334,7 @@
     </div>
 
     <!-- Sprites Help -->
-    <popup-container id="spritesHelp" class="help-container">
+    <div id="spritesHelp" class="help-container" data-popup-box>
 
         <h3>Primary Controls</h3>
 
@@ -373,5 +412,5 @@
                 </ul>
             </p>
         </div>
-    </popup-container>
+    </div>
 </div>

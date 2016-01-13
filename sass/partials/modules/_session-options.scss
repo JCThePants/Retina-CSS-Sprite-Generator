@@ -63,41 +63,34 @@
             height: 300px;
             cursor: pointer;
         }
-    }
-    
-    &.open {
-        ul {
-            display: inline-block;
-            color: #000;
-            background: #c5c5c5;
-            width: 175px;
-            height: auto;
-            opacity: 1;
-            
-            &>li, a {
-                color: #000;
-                
-                &:hover {
-                    background: #4a90e2;
-                    color: #fff;
-                }
-            }
-            
-            .text {
-                cursor: pointer;
-            }
+
+      &.open {
+        display: inline-block;
+        color: #000;
+        background: #c5c5c5;
+        width: 175px;
+        height: auto;
+        opacity: 1;
+
+        &>li, a {
+          color: #000;
+
+          &:hover {
+            background: #4a90e2;
+            color: #fff;
+          }
         }
-        .btn {
-            background-position: 0 0;
-            -ms-transform: rotate(180deg);
-            transform: rotate(180deg);
-        }        
-        
-        .icon.disk {
-            opacity: 0.25;
-            -ms-transform: rotate(60deg);
-            -webkit-transform: rotate(60deg);
-            transform: rotate(60deg);
+
+        .text {
+          cursor: pointer;
         }
+      }
     }
+
+  .icon.disk.active {
+    opacity: 0.25;
+    -ms-transform: rotate(60deg);
+    -webkit-transform: rotate(60deg);
+    transform: rotate(60deg);
+  }
 }

@@ -6,7 +6,8 @@ require.config({
         'angular-drag-drop-lists': 'libs/angular-drag-and-drop-lists.min',
         'ios-drag-drop': 'libs/ios-drag-drop',
         'image-background': 'modules/var-image-background',
-        'cache': 'modules/factory-cache'
+        'cache': 'modules/factory.cache',
+        'rawUI': 'libs/raw-ui.min'
     },
     shim: {
         'main' : {
@@ -23,31 +24,33 @@ require.config({
         'ios-drag-drop': {
             deps: ['angular', 'angular-drag-drop-lists', 'app'],
             exports: 'angular'
+        },
+        'rawUI': {
+            deps: ['angular'],
+            exports: 'angular'
         }
     }
 });
 
 require([
-        'angular',
-        'angular-drag-drop-lists',
-        'ios-drag-drop',
-        'app',
-        'modules/directive-a',
-        'modules/directive-anchor-smooth-scroll',
-        'modules/directive-copy-btn',
-        'modules/directive-css-sprite',
-        'modules/directive-drag-scroll',
-        'modules/directive-ext-template',
-        'modules/directive-image-fit',
-        'modules/directive-image-upload',
-        'modules/directive-save-session-btn',
-        'modules/directive-load-session-btn',
-        'modules/directive-popup',
-        'modules/directive-select',
-        'modules/directive-show-mode',
-        'modules/directive-space-indent',
-        'modules/directive-sprite-preview',
-        'modules/directive-text-box'
-    ], function () {
-    
+    'angular',
+    'angular-drag-drop-lists',
+    'ios-drag-drop',
+    'app',
+    'modules/directive.anchor-smooth-scroll',
+    'modules/directive.copy-btn',
+    'modules/directive.css-sprite',
+    'modules/directive.drag-scroll',
+    'modules/directive.ext-template',
+    'modules/directive.image-fit',
+    'modules/directive.image-upload',
+    'modules/directive.save-session-btn',
+    'modules/directive.load-session-btn',
+    'modules/directive.max-chars',
+    'modules/directive.mode',
+    'modules/directive.numbers-only',
+    'modules/directive.space-indent',
+    'modules/directive.sprite-preview'
+], function () {
+
 });

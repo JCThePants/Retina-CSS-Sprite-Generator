@@ -1,13 +1,15 @@
 <div class="panel preview-panel">
 
     <h2>Preview</h2>
-    <popup-button class="help-btn" data-container-id="previewHelp">?</popup-button>
-    
-    <div class="select color-picker" title="Background" 
-         data-model="g.preview.bg"
-         data-show-html="true">
-        
-        <ul class="dropdown">
+    <div class="help-btn" data-popup-button="previewHelp">?</div>
+
+    <div class="select-box color-picker" title="Background"
+         data-ng-model="g.preview.bg">
+        <div class="display">
+            <span class="title">Background</span>
+            <span class="value"></span>
+        </div>
+        <ul data-transition-height="select.isOpen">
             <li data-value="#fff">
                 <div class="color white"></div>
             </li>
@@ -37,18 +39,18 @@
 
     <div class="sprites-container">
         <div class="left">
-            <h3 data-show-mode="retina">Normal</h3>
+            <h3 data-mode="retina">Normal</h3>
             <sprite-preview class="preview-normal" data-source="spriteData" data-background="g.preview.bg"></sprite-preview>
         </div>
         <div class="center"></div>
-        <div class="right" data-show-mode="retina">
+        <div class="right" data-mode="retina">
             <h3>Retina</h3>
             <sprite-preview class="preview-retina" data-source="spriteData" data-background="g.preview.bg" data-image-source="retinaSpriteData.src"></sprite-preview>
         </div>
     </div>
 
     <!-- Preview Help -->
-    <popup-container id="previewHelp" class="help-container">
+    <div id="previewHelp" class="help-container" data-popup-box>
 
         <h3>About Preview</h3>
 
@@ -57,8 +59,8 @@
                 The Preview panel shows each icon as it would appear using the generated sprite and CSS styles. You can use this to verify that the sprites are correct.
             </p>
         </div>
-        
-        <div data-show-mode="retina">
+
+        <div data-mode="retina">
             <h3>Normal</h3>
             <div class="help-content">
                 <p>
@@ -74,6 +76,6 @@
             </div>
         </div>
 
-</popup-container>
+    </div>
 
 </div>

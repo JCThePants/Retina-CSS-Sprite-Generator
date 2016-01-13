@@ -18,3 +18,34 @@ $screen-lg: 1200px !default;
 $screen-xs-max: ($screen-sm - 1) !default;
 $screen-sm-max: ($screen-md - 1) !default;
 $screen-md-max: ($screen-lg - 1) !default;
+
+$base-font: Arial, "Helvetica Neue", Helvetica, sans-serif;
+$base-font-size: 14px;
+$base-color: #323232;
+
+$text-color: #ded3cc;
+$text-color-dark: #a7a7a7;
+$text-color-darkest: #736a63;
+$title-color: #e0cbb0;
+$link-color: #4a90e2;
+$active-color: #2379d5;
+$select-color: #2379d5;
+$dark-color: #535353;
+$medium-dark-color: #494949;
+$darkest-color: #262626;
+$drag-handle-color: #000;
+$drag-handle-border-color: #777;
+$control-color: #333;
+
+$error-bg: #4e0c00;
+$error-color: #dc7966;
+
+$editor-bg-color: #141719;
+$editor-color: #bdbdbd;
+$editor-font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
+$editor-font-size: 15px;
+$editor-line-height: 17px;
+$editor-padding: 15px;
+
+
+$min-control-box-width: 210px;

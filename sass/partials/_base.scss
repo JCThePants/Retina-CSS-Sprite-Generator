@@ -22,7 +22,7 @@ body {
     font-weight: normal;
     padding: 5px 0 10px 0;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.75);
-    
+
     @media (min-width: $screen-sm) {
         padding: 20px 0 30px 0;
     }
@@ -173,4 +173,17 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.select-box .value {
+  .orientation {
+    display: none;
+  }
+}
+
+.unit-of-measure {
+  display: inline-block;
+  margin-left: 1px;
+  font-size: 80%;
+  opacity: 0.55;
 }

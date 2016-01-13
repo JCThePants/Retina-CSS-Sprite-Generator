@@ -12,9 +12,11 @@
     font-weight: bolder;
     color: #ded3cc;
     opacity: 0.6;
+    cursor: pointer;
+
     @include user-select(none);
     @include transition(0.25s ease all);
-    &.open {
+    &.active {
         opacity: 0.3;
     }
 }

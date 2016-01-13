@@ -3,31 +3,17 @@
 @import "../_mixins.scss";
 
 /** Advanced Settings **/
-.stylesheet-panel {
-    .settings-box {
-        height: 290px;
-    }
-}
-
-.sprites-panel {
-    .settings-box {
-        line-height: 49px;
-        height: 128px;
-    }
-}
-
 .settings-box {
     overflow: hidden;
-    opacity: 1;
-    padding-top: 10px;
+    height: 0;
+    opacity: 0;
     padding-bottom: 20px;
     @include transition(0.2s all linear);
-    
-    &.hidden {
-        display: block !important;
-        opacity: 0;
-        height: 0;
-        padding-top: 0;
+
+    &.open {
+      padding-top: 10px;
+      height: auto;
+      opacity: 1;
     }
     
     ul {

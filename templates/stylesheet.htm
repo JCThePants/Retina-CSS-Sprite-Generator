@@ -1,86 +1,156 @@
 <div class="panel stylesheet-panel">
 
     <h2>Stylesheet</h2>
-    <popup-button class="help-btn" data-container-id="stylesHelp">?</popup-button>
+    <div class="help-btn" data-popup-button="stylesHelp">?</div>
 
     <!-- Select Type -->
-    <div class="select" title="Type" data-model="g.styles.type">
-        <ul class="dropdown">
+    <div class="select-box" title="Type" data-ng-model="g.styles.type">
+        <div class="display">
+            <span class="title">Type</span>
+            <span class="value"></span>
+        </div>
+        <ul data-transition-height="select.isOpen">
             <li data-value="css">CSS</li>
             <li data-value="scss">SCSS</li>
         </ul>
     </div>
 
     <!-- Select Indent -->
-    <div class="select" title="Indent" data-model="g.styles.indent">
-        <ul class="dropdown">
-            <li data-value="2">2 spaces</li>
-            <li data-value="4">4 spaces</li>
-            <li data-value="6">6 spaces</li>
-            <li data-value="8">8 spaces</li>
+    <div class="select-box" title="Indent" data-ng-model="g.styles.indent">
+        <div class="display">
+            <span class="title">Indent</span>
+            <span class="value"></span>
+        </div>
+        <ul data-transition-height="select.isOpen">
+            <li data-value="2">2 <span class="unit-of-measure">spaces</span></li>
+            <li data-value="4">4 <span class="unit-of-measure">spaces</span></li>
+            <li data-value="6">6 <span class="unit-of-measure">spaces</span></li>
+            <li data-value="8">8 <span class="unit-of-measure">spaces</span></li>
         </ul>
     </div>
 
-    <a href="#" title="Advanced Settings" class="icon settings" data-ng-class="{'active':g.styles.showSettings}" data-ng-click="g.styles.showSettings=!g.styles.showSettings"></a>
+    <a href="#" class="icon settings" title="Advanced Settings"
+       data-toggle="g.styles.showSettings"></a>
 
-    <div class="settings-box hidden" data-ng-class="{'hidden':!g.styles.showSettings}">
+    <div class="settings-box" data-transition-height="g.styles.showSettings">
         <ul>
-            <li data-show-mode="retina">
-                <span class="settings-input">
-                    <text-box title="Retina Image Name" 
-                              data-model="g.styles.retinaName" 
-                              data-input-id="retinaNameRetina"></text-box>
-                </span>
+            <li data-mode="retina">
+                <div class="settings-input">
+                    <!-- retina file name -->
+                    <div class="control textbox">
+                        <input type="text" id="retina-file"
+                               data-ng-model="g.styles.retinaName">
+
+                        <label for="retina-file">
+                            <span class="title">
+                                Retina File
+                            </span>
+                            <span class="value">
+                               <span>{{g.styles.retinaName || 'icons-retina'}}</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
                 <span class="settings-descr">
                     The name of the retina image file.
                 </span>
             </li>
-            <li data-show-mode="retina">
-                <span class="settings-input">
-                    <text-box title="Normal Image Name" 
-                              data-model="g.styles.imageName" 
-                              data-input-id="imageNameRetina"></text-box>
-                </span>
+            <li data-mode="retina">
+                <div class="settings-input">
+                    <div class="control textbox">
+                        <input type="text" id="normal-file"
+                               data-ng-model="g.styles.imageName">
+
+                        <label for="normal-file">
+                            <span class="title">
+                                Normal File
+                            </span>
+                            <span class="value">
+                               <span>{{g.styles.imageName || 'icons'}}</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
                 <span class="settings-descr">
                     The name of the normal size image file.
                 </span>
             </li>
-            <li data-show-mode="normal">
-                <span class="settings-input">
-                    <text-box title="Image Name" 
-                              data-model="g.styles.imageName" 
-                              data-input-id="imageNameNormal"></text-box>
-                </span>
+            <li data-mode="normal">
+                <div class="settings-input">
+                    <div class="control textbox">
+                        <input type="text" id="file"
+                               data-ng-model="g.styles.imageName">
+
+                        <label for="file">
+                            <span class="title">
+                                File
+                            </span>
+                            <span class="value">
+                               <span>{{g.styles.imageName || 'icons'}}</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
                 <span class="settings-descr">
                     The name of the image file.
                 </span>
             </li>
             <li>
-                <span class="settings-input">
-                    <text-box title="Sprite Class Name" 
-                              data-model="g.styles.spriteName" 
-                              data-input-id="spriteName"></text-box>
-                </span>
+                <div class="settings-input">
+                    <div class="control textbox">
+                        <input type="text" id="sprite-name"
+                               data-ng-model="g.styles.spriteName">
+
+                        <label for="sprite-name">
+                            <span class="title">
+                                Class Name
+                            </span>
+                            <span class="value">
+                               <span>{{g.styles.spriteName || 'icon'}}</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
                 <span class="settings-descr">
                     The name of the sprite CSS class.
                 </span>
             </li>
             <li>
-                <span class="settings-input">
-                    <text-box title="Class Prefix" 
-                              data-model="g.styles.prefix" 
-                              data-input-id="prefix"></text-box>
-                </span>
+                <div class="settings-input">
+                    <div class="control textbox">
+                        <input type="text" id="class-prefix"
+                               data-ng-model="g.styles.prefix">
+
+                        <label for="class-prefix">
+                            <span class="title">
+                                Prefix
+                            </span>
+                            <span class="value">
+                               <span>{{g.styles.prefix || '[none]'}}</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
                 <span class="settings-descr">
                     A prefix to attach to all icon class names.
                 </span>
             </li>
             <li>
-                <span class="settings-input">
-                    <text-box title="Class Suffix" 
-                              data-model="g.styles.suffix" 
-                              data-input-id="suffix"></text-box>
-                </span>
+                <div class="settings-input">
+                    <div class="control textbox">
+                        <input type="text" id="class-suffix"
+                               data-ng-model="g.styles.suffix">
+
+                        <label for="class-suffix">
+                            <span class="title">
+                                Suffix
+                            </span>
+                            <span class="value">
+                               <span>{{g.styles.suffix || '[none]'}}</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
                 <span class="settings-descr">
                     A suffix to attach to all icon class names.
                 </span>
@@ -140,10 +210,10 @@
                     }
                 </div>
 
-                <div data-show-mode="retina" data-indent></div>
+                <div data-mode="retina" data-indent></div>
 
                 <!-- CSS Media Query-->
-                <div data-show-mode="retina">
+                <div data-mode="retina">
                     <span class="css-selector">@media</span> (<span class="css-property-name">-webkit-min-device-pixel-ratio</span>:
                     <span class="css-property-value">2</span>), (<span class="css-property-name">min-resolution</span>: <span class="css-property-value">192dpi</span>) {
 
@@ -188,10 +258,10 @@
                     <div class="css-property" data-indent data-ng-class="{'hidden':!spriteData.cmw}"><span class="css-property-name">width</span>: <span class="css-property-value number">{{spriteData.cmw}}px</span>;</div>
                     <div class="css-property" data-indent data-ng-class="{'hidden':!spriteData.cmh}"><span class="css-property-name">height</span>: <span class="css-property-value number">{{spriteData.cmh}}px</span>;</div>
 
-                    <div data-show-mode="retina" data-indent></div>
+                    <div data-mode="retina" data-indent></div>
 
                     <!-- SCSS Media Query-->
-                    <div data-show-mode="retina">
+                    <div data-mode="retina">
                         <div data-indent><span class="css-selector">@media</span> (<span class="css-property-name">-webkit-min-device-pixel-ratio</span>:
                             <span class="css-property-value number">2</span>), (<span class="css-property-name">min-resolution</span>: <span class="css-property-value number">192dpi</span>) {
 
@@ -235,7 +305,7 @@
     </div>
 
     <!-- Stylesheet Help -->
-    <popup-container id="stylesHelp" class="help-container">
+    <div id="stylesHelp" class="help-container" data-popup-box>
 
         <h3>Primary Controls</h3>
 
@@ -306,5 +376,5 @@
                 </li>
             </ul>
         </div>
-    </popup-container>
+    </div>
 </div>
