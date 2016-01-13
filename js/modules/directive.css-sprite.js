@@ -3,9 +3,12 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
     document.registerElement && document.registerElement('css-sprite');
 
     /* DIRECTIVE: (<sprite>) Renders sprite from an input array and optionally outputs data for use in generating a stylesheet. */
-    app.directive('cssSprite', ['$timeout', '$parse', function ($timeout, $parse) {
+    CssSpriteDirective.$inject = ['$timeout', '$parse'];
+    app.directive('cssSprite', CssSpriteDirective);
 
-        var self = {
+    function CssSpriteDirective($timeout, $parse) {
+
+        return {
             restrict: 'E',
             scope: {
                 scale: '=scale',
@@ -16,58 +19,64 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
                 output: '=output',
                 trigger: '=trigger'
             },
-            link: function (scope, elem, attrs) {
-
-                scope.canvas = document.createElement("CANVAS");
-                scope.canvas.style.background = 'url(' + bgImage.toDataURL() + ')';
-                elem.append(angular.element(scope.canvas));
-
-                scope.unparsedIconWidth = attrs.iconWidth;
-                scope.unparsedIconHeight = attrs.iconHeight;
-                scope.itemSource = attrs.itemSource;
-                scope.renderChild = typeof attrs.renderChild !== 'undefined';
-                var promise;
-
-                scope.$watchGroup(['source.length', 'scale', 'spacing', 'padding', 'orientation', 'iconWidth', 'iconHeight', 'trigger'], function (e) {
-                    if (!scope.source || elem.hasClass('ng-hide'))
-                        return;
-
-                    if (scope.promise) {
-                        $timeout.cancel(scope.promise);
-                        scope.promise = null;
-                    }
-
-                    if (scope.boxPromise) {
-                        $timeout.cancel(scope.boxPromise);
-                        scope.boxPromise = null;
-                    }
-
-                    scope.iconWidth = parseInt($parse(scope.unparsedIconWidth)(scope.$parent));
-                    scope.iconHeight = parseInt($parse(scope.unparsedIconHeight)(scope.$parent));
-                    
-                    if (promise)
-                        $timeout.cancel(promise);
-
-                    promise = $timeout(function () {
-                        var imgLoader = new RefImageLoader(scope, function (images) {
-
-                            if (scope.orientation === 'packed') {
-                                renderPack(images, scope);
-                            } else {
-                                renderImages(images, scope);
-                            }
-                            scope.refImages = images;
-                        });
-
-                        for (var i = 0, data; data = scope.source[i]; i++) {
-                            imgLoader.add(data, i);
-                        }
-                        imgLoader.complete();
-                        promise = null;
-                    }, 10);
-                });
-            }
+            link: cssSpriteLink
         };
+
+        function cssSpriteLink($scope, $elem, $attrs) {
+
+            $scope.canvas = document.createElement("CANVAS");
+            $scope.canvas.style.background = 'url(' + bgImage.toDataURL() + ')';
+            $elem.append(angular.element($scope.canvas));
+
+            $scope.unparsedIconWidth = $attrs.iconWidth;
+            $scope.unparsedIconHeight = $attrs.iconHeight;
+            $scope.itemSource = $attrs.itemSource;
+            $scope.renderChild = typeof $attrs.renderChild !== 'undefined';
+            var promise;
+
+            $scope.$watchGroup(
+                ['source.length', 'scale', 'spacing', 'padding', 'orientation', 'iconWidth', 'iconHeight', 'trigger'],
+                watchGroup);
+
+            function watchGroup() {
+                if (!$scope.source || $elem.hasClass('ng-hide'))
+                    return;
+
+                if ($scope.promise) {
+                    $timeout.cancel($scope.promise);
+                    $scope.promise = null;
+                }
+
+                if ($scope.boxPromise) {
+                    $timeout.cancel($scope.boxPromise);
+                    $scope.boxPromise = null;
+                }
+
+                $scope.iconWidth = parseInt($parse($scope.unparsedIconWidth)($scope.$parent));
+                $scope.iconHeight = parseInt($parse($scope.unparsedIconHeight)($scope.$parent));
+
+                if (promise)
+                    $timeout.cancel(promise);
+
+                promise = $timeout(function () {
+                    var imgLoader = new RefImageLoader($scope, function (images) {
+
+                        if ($scope.orientation === 'packed') {
+                            renderPack(images, $scope);
+                        } else {
+                            renderImages(images, $scope);
+                        }
+                        $scope.refImages = images;
+                    });
+
+                    for (var i = 0, data; data = $scope.source[i]; i++) {
+                        imgLoader.add(data, i);
+                    }
+                    imgLoader.complete();
+                    promise = null;
+                }, 10);
+            }
+        }
 
 
         // Creates and loads image objects for reference and invoke callback when complete.
@@ -98,10 +107,10 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
                     if (isComplete && loading === 0) {
                         callback && callback(images);
                     }
-                }
+                };
 
                 image.src = img.src;
-            }
+            };
 
             /**
              * Invoke after all image data has been added.
@@ -115,7 +124,7 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
         }
 
 
-        // render images into sprite canvase
+        // render images into sprite canvas
         function renderImages(images, scope) {
             var s = getScopeData(scope);
 
@@ -123,7 +132,7 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
             var width = s.buffer.width = canvasSize.w;
             var height = s.buffer.height = canvasSize.h;
             var common = canvasSize.common;
-                        
+
             // draw images into canvas
             scope.promise = $timeout(function () {
 
@@ -169,7 +178,7 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
 
                     output.push(outData);
                 }
-                
+
                 flushBuffer(s);
                 output.compr = width * height * (s.canvas.toDataURL("image/jpeg", 0.5).length / s.canvas.toDataURL("image/jpeg", 1).length);
                 output.src = s.canvas.toDataURL();
@@ -253,11 +262,11 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
             s.canvas.height = s.buffer.height;
             s.canvas.style.width = s.buffer.width + 'px';
             s.canvas.style.height = s.buffer.width.height + 'px';
-            
+
             var context = s.canvas.getContext('2d');
             context.clearRect(0, 0, s.canvas.width, s.canvas.height);
             context.drawImage(s.buffer, 0, 0, s.canvas.width, s.canvas.height);
-        }        
+        }
 
         function getScopeData(scope) {
             var buffer = document.createElement("CANVAS");
@@ -290,16 +299,14 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
                 _sort(widths);
                 _sort(heights);
                 total++;
-            }
+            };
 
             /**
              * Calculate the most common width and/or height.
-             * @param   {Float} thresh Percentage of total sizes that must be matched or exceeded.
+             * @param   {number} thresh Percentage of total sizes that must be matched or exceeded.
              * @returns {Object} { width, height } Either property may return false if there is no common size.
              */
             this.mostCommon = function (thresh) {
-                var commonWidth = widths[0];
-                var commonHeight = heights[0];
 
                 var result = {
                     width: false,
@@ -315,7 +322,7 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
                 }
 
                 return result;
-            }
+            };
 
             // util. Add size to array
             function _add(size, array) {
@@ -412,7 +419,5 @@ define(['angular', 'app', 'modules/lib-box-packing', 'image-background'], functi
 
             return result;
         }
-
-        return self;
- }]);
+    }
 });

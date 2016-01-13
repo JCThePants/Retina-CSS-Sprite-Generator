@@ -6,7 +6,7 @@ require.config({
         'angular-drag-drop-lists': 'libs/angular-drag-and-drop-lists.min',
         'ios-drag-drop': 'libs/ios-drag-drop',
         'image-background': 'modules/var-image-background',
-        'cache': 'modules/factory.cache',
+        'cache': 'modules/service.cache',
         'rawUI': 'libs/raw-ui.min'
     },
     shim: {

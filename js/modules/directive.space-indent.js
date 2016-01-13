@@ -6,7 +6,27 @@ define(['angular', 'app'], function (angular, app) {
     });
 
     /* DIRECTIVE: (data-space-indent) Prepend indents to child elements that have the 'data-indent' attribute */
-    app.directive('spaceIndent', function () {
+    app.directive('spaceIndent', SpaceIndentDirective);
+
+    function SpaceIndentDirective() {
+
+        return {
+            restrict: 'E',
+            scope: {
+                spaces: '=spaces',
+                update: '=update'
+            },
+            link: spaceIndentLink
+        };
+
+        function spaceIndentLink($scope, $elem) {
+
+            update($elem, $scope.spaces);
+
+            $scope.$watchGroup(['spaces', 'update'], function () {
+                update($elem, $scope.spaces);
+            });
+        }
 
         function indent(elem, spaces, depth) {
 
@@ -43,22 +63,6 @@ define(['angular', 'app'], function (angular, app) {
 
             indent(elem, spaces, 1);
         }
-
-        return {
-            restrict: 'E',
-            scope: {
-                spaces: '=spaces',
-                update: '=update'
-            },
-            link: function (scope, elem, attrs) {
-
-                update(elem, scope.spaces);
-
-                scope.$watchGroup(['spaces', 'update'], function () {
-                    update(elem, scope.spaces);
-                });
-            }
-        };
-    });
+    }
 
 });

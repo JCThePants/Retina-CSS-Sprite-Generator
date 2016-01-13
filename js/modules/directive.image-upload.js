@@ -1,39 +1,43 @@
 define(['app', 'modules/directive.css-sprite'], function (app) {
 
     /* DIRECTIVE: (data-image-upload) Image upload button */
-    app.directive('imageUpload', ['$timeout', '$parse', function ($timeout, $parse) {
+    ImageUploadDirective.$inject = ['$timeout', '$parse'];
+    app.directive('imageUpload', ImageUploadDirective);
 
-        var directive = {
-            priority: 2,
+    function ImageUploadDirective($timeout, $parse) {
+
+        return {
             restrict: 'EA',
             scope: {
                 output: '=output'
             },
-            link: function (scope, elem, attrs) {
-
-                // dnd drag compatibility
-                if (elem.parent().hasClass('dndPlaceholder'))
-                    return;
-
-                scope.onInvalidSize = attrs.onInvalidSize;
-                scope.onUpload = attrs.onUpload;
-                scope.isMultiple = typeof attrs.multiple !== 'undefined';
-                scope.requiredWidth = attrs.requiredWidth;
-                scope.requiredHeight = attrs.requiredHeight;
-
-                var title = attrs.title ? ' title="' + attrs.title + '"' : '';
-                var accept = ' accept="' + (attrs.accept || 'image/*') + '"';
-                var multiple = scope.isMultiple ? ' multiple="multiple"' : '';
-
-                var input = angular.element('<input type="file"' + multiple + accept + title + '>');
-                elem.append(input);
-
-                input.on('change', function (e) {
-                    readFiles(scope, e.target.files);
-                    input.val(null);
-                });
-            }
+            link: imageUploadLink
         };
+
+        function imageUploadLink($scope, $elem, $attrs) {
+
+            // dnd drag compatibility
+            if ($elem.parent().hasClass('dndPlaceholder'))
+                return;
+
+            $scope.onInvalidSize = $attrs.onInvalidSize;
+            $scope.onUpload = $attrs.onUpload;
+            $scope.isMultiple = typeof $attrs.multiple !== 'undefined';
+            $scope.requiredWidth = $attrs.requiredWidth;
+            $scope.requiredHeight = $attrs.requiredHeight;
+
+            var title = $attrs.title ? ' title="' + $attrs.title + '"' : '';
+            var accept = ' accept="' + ($attrs.accept || 'image/*') + '"';
+            var multiple = $scope.isMultiple ? ' multiple="multiple"' : '';
+
+            var input = angular.element('<input type="file"' + multiple + accept + title + '>');
+            $elem.append(input);
+
+            input.on('change', function (e) {
+                readFiles($scope, e.target.files);
+                input.val(null);
+            });
+        }
 
         // read all uploaded files and prepare data objects to place into the scope files
         function readFiles(scope, files) {
@@ -140,13 +144,13 @@ define(['app', 'modules/directive.css-sprite'], function (app) {
                         } else {
                             isComplete && loading === 0 && callback && callback(dataArray);
                         }
-                    }
+                    };
                     image.src = img.src;
                 };
 
                 // Read in the image file as a data URL.
                 reader.readAsDataURL(file);
-            }
+            };
 
             /**
              * Invoke once all files have been added to the loader.
@@ -158,7 +162,5 @@ define(['app', 'modules/directive.css-sprite'], function (app) {
                 isComplete = true;
             }
         }
-
-        return directive;
-        }]);
+    }
 });

@@ -48,7 +48,7 @@ define(['angular', 'app'], function (angular, app) {
                 h: block.h
             };
             return node;
-        };
+        }
 
         function growNode(block) {
 
